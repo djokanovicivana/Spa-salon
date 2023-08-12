@@ -1,29 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
+import styles from "./IzmenaProfilaPage.module.css"
 import { TextField } from "@mui/material";
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
-import styles from "./RegistracijaPage.module.css";
 import { useForm } from 'react-hook-form';
-import Navbar from "../../components/Navbar/Navbar";
-export default function RegistracijaPage(){
+export default function IzmenaProfilaPage(){
     const { register, handleSubmit, formState: { errors }} = useForm();
-
     const onSubmit=(data)=>{
         console.log(data);
     }
-    return (
+    return(
         <>
-            <Navbar
-                logo={<Link to="/">KOZMETIČKI SALON</Link>}
-                text1="O nama"
-                text2="Usluge"
-                text3="Cenovnik"
-                text4={<Link to="/prijava">Prijavi se</Link>}
-                text5={<Link to="/registracija">Registruj se</Link>} />
-            <div>
+         <Navbar
+        logo={<Link to="/">KOZMETIČKI SALON</Link>}
+        text2={<Link to="/zaposleniAdmin">Zaposleni</Link>}
+        text3={<Link to="/korisniciAdmin">Korisnici</Link>}
+        text4={<Link to="/profil">Tvoj profil</Link>}
+        text5="Odjavi se"/>
+        <div>
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}method="post">
                     <div className={styles.row1}>
-                        <h1>Registruj se</h1>
+                        <h1>Izmeni profil</h1>
                        <div className={styles.item}>
                             <TextField
                                 id="ime"
@@ -89,12 +87,10 @@ export default function RegistracijaPage(){
                              {...register('password_confirmation',{required:true})} />
                             {errors.password_confirmation && <p className={styles.error}>Polje je obavezno.</p>} 
                         </div>
-                        <ContainedButton text="POTVRDI" type="submit" module={styles.button}/>
+                        <ContainedButton text="IZMENI" type="submit" module={styles.button}/>
                     </div>
                     </form>     
                 </div>
-                
-            
         </>
     )
 }

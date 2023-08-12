@@ -47,7 +47,7 @@ export default function PrijavaPage(){
                 {errors.password && <p className={styles.error}>Lozinka je obavezna!</p>}
                 
             </div>
-            <ContainedButton text="POTVRDI" className={styles.field} type="submit" />
+            <ContainedButton text="POTVRDI" module={styles.button} type="submit" />
             </form>
             <div className={styles.link}>
                         <p>Nemaš nalog? <Link style={{ color: '#fb6f92' }} to="/registracija">REGISTRUJ SE!</Link></p>
