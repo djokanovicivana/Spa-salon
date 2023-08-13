@@ -1,27 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
-import styles from "./IzmenaProfilaPage.module.css"
+import styles from "./DodavanjeForm.module.css"
 import { TextField } from "@mui/material";
-import ContainedButton from "../../components/ContainedButton/ContainedButton";
+import ContainedButton from "../ContainedButton/ContainedButton";
 import { useForm } from 'react-hook-form';
-export default function IzmenaProfilaPage(){
-    const { register, handleSubmit, formState: { errors }} = useForm();
+export default function DodavanjeForm(props){
+    const {register, handleSubmit, formState:{errors}}=useForm();
     const onSubmit=(data)=>{
         console.log(data);
     }
     return(
-        <>
-         <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to="/zaposleniAdmin">Zaposleni</Link>}
-        text3={<Link to="/korisniciAdmin">Korisnici</Link>}
-        text4={<Link to="/profil">Tvoj profil</Link>}
-        text5="Odjavi se"/>
-        <div>
+        <><div>
+            <h1>{props.heading}</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}method="post">
-                    <div className={styles.row1}>
-                        <h1>Izmeni profil</h1>
+                    <div className={styles.row1}> 
                        <div className={styles.item}>
                             <TextField
                                 id="ime"
@@ -49,6 +40,8 @@ export default function IzmenaProfilaPage(){
                                 {...register('brojTelefona',{required:true})} />
                                 {errors.brojTelefona && <p className={styles.error}>Polje je obavezno.</p>} 
                         </div>
+                        </div>
+                        <div className={styles.row2}>
                         <div className={styles.item}>
                             <TextField
                                 id="email"
@@ -57,9 +50,8 @@ export default function IzmenaProfilaPage(){
                                 variant="outlined"
                                 {...register('email',{required:true})} />
                                 {errors.email && <p className={styles.error}>Polje je obavezno.</p>} 
-                        </div>
                     </div>
-                    <div className={styles.row2}>
+                    
                         <div className={styles.item}>
                             <TextField
                                 id="korisnickoIme"
@@ -78,16 +70,23 @@ export default function IzmenaProfilaPage(){
                             {...register('password',{required:true})} />
                             {errors.password && <p className={styles.error}>Polje je obavezno.</p>} 
                         </div>
-                         <div className={styles.item}>
-                            <TextField label="Potvrdi lozinku" 
-                             id="password_confirmation"
-                             name="password_confirmation"
-                             variant="outlined"
-                             type="password"
-                             {...register('password_confirmation',{required:true})} />
-                            {errors.password_confirmation && <p className={styles.error}>Polje je obavezno.</p>} 
-                        </div>
-                        <ContainedButton text="IZMENI" type="submit" module={styles.button}/>
+                       <div className={styles.item}>
+    {props.uloga === 'Zaposleni' && (
+        <>
+            <TextField
+                label="Usluga"
+                id="usluga"
+                name="usluga"
+                variant="outlined"
+                type="text"
+                {...register('usluga', { required: true })}
+            />
+            {errors.usluga && <p className={styles.error}>Polje je obavezno.</p>}
+        </>
+    )}
+</div>
+
+                        <ContainedButton text="POTVRDI" type="submit" module={styles.button}/>
                     </div>
                     </form>     
                 </div>

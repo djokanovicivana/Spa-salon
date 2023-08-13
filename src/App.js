@@ -5,7 +5,8 @@ import PrijavaPage from './pages/PrijavaPage/PrijavaPage';
 import RegistracijaPage from './pages/RegistracijaPage/RegistracijaPage';
 import AdminPage from './pages/AdminPage/AdminPage';
 import Profil from './pages/Profil/Profil';
-import IzmenaProfilaPage from './pages/IzmenaProfilaPage/IzmenaProfilaPage';
+import SviKorisniciPage from './pages/SviKorisniciPage/SviKorisniciPage';
+import SviZaposleniPage from './pages/SviZaposleniPage/SviZaposleniPage';
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
       <Route path="/registracija" element={<RegistracijaPage/>}/>
       <Route path="/admin" elemet={<AdminPage/>}/>
       <Route path="/profil" element={<Profil/>}/>
-      <Route path="/izmenaProfila" element={<IzmenaProfilaPage/>}/>
+      <Route path="/korisniciAdmin" element={<SviKorisniciPage/>}/>
+      <Route path="/zaposleniAdmin" element={<SviZaposleniPage/>}/>
 
     </Routes>
     </BrowserRouter>

@@ -1,13 +1,13 @@
 .box{
     background-color: white;
     width:35vw;
-    height: 75vh;
+    height: 80vh;
     border-radius: 20px;
-    margin-left:35vw;
+    margin-left:32vw;
     font-size: 22px;
     color:#fb6f92;
     font-weight: bolder;
-    margin-top:3vh;
+    margin-top:1vh;
     text-align: left;
     box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
         -webkit-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
@@ -26,8 +26,9 @@ font-size: 35px;
     font-weight: bolder;
     color: #fb6f92;
     margin-bottom: 5vh;
-    margin-top:8vh;
+    margin-top:3vh;
     text-align: center;
+    margin-left:0;
 }
 .button {
     font-size: 15px;
