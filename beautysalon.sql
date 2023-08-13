@@ -63,10 +63,10 @@ CREATE TABLE `customer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `emloyee`
+-- Table structure for table `employee`
 --
 
-CREATE TABLE `emloyee` (
+CREATE TABLE `employee` (
   `EmployeeID` int(10) NOT NULL,
   `FirstName` varchar(20) NOT NULL,
   `LastName` varchar(30) NOT NULL,
@@ -117,7 +117,7 @@ ALTER TABLE `emloyee`
   ADD PRIMARY KEY (`EmployeeID`);
 
 ALTER TABLE `emloyee`
-  ADD FOREIGN KEY (`ServiceID`) REFERENCES SalonService(`ServiceID`);
+  ADD FOREIGN KEY (`ServiceID`) REFERENCES salonservice(`ServiceID`);
 
 --
 -- Indexes for table `salonservice`
