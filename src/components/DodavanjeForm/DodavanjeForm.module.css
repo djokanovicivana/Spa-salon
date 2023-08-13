@@ -1,16 +1,8 @@
-.form {
-    margin-top: 5vh;
+
+.form{
     display: flex;
-    margin-bottom: 40px;
-    margin-left: 25vw;
-    background: white;
-    border-radius: 25px;
-    width: 50vw;
-    height: 70vh;
-    margin-top: 9vh;
-    box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+
+    
 }
 
 .row1 {
@@ -22,13 +14,15 @@
 
 .row2 {
     margin-right: 100px;
-    margin-top: 14vh;
+    margin-top: 0vh;
 }
 
 h1 {
     position: relative;
     line-height: 1.2em;
     color: #fb6f92;
+    margin-left:7vw;
+    margin-top:7vh;
 }
 
 h1:before {
