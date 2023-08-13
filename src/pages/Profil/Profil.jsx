@@ -4,6 +4,8 @@ import styles from "./Profile.module.css"
 import { Link } from "react-router-dom";
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import EditIcon from '@mui/icons-material/Edit';
+import BasicModal from "../../components/BasicModal/BasicModal";
+import IzmenaForm from "../../components/IzmenaForm/IzmenaForm";
 
 export default function Profil(){
     return(
@@ -21,12 +23,13 @@ export default function Profil(){
             <p>Prezime: <span className={styles.item}>Ivana</span> </p>
             <p>Korisničko ime: <span className={styles.item}>Ivana</span></p>
             <p>Email: <span className={styles.item}>Ivana</span></p>
+            <p>Lozinka: <span className={styles.item}>Ivana</span></p>
             <p>Broj telefona: <span className={styles.item}>Ivana</span></p>
             <p>Adresa: <span className={styles.item}>Ivana</span></p>
             </div>
-            <Link to="/izmenaProfila">
-            <ContainedButton text={<EditIcon/>} module={styles.button}/>
-            </Link>
+            <BasicModal label={<ContainedButton text={<EditIcon/>} module={styles.button}/>}
+            child={<IzmenaForm heading="Izmeni profil"/>}
+            />
         </div>
         </>
     )
