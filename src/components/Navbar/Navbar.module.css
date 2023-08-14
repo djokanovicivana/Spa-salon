@@ -3,7 +3,7 @@ a:-webkit-any-link {
 }
 
 a:-webkit-any-link:hover {
-    color: #fb6f92;;
+    color: #fb6f92;
     cursor: pointer;
 }
 

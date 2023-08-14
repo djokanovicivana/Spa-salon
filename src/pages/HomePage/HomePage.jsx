@@ -8,7 +8,7 @@ export default function HomePage(){
         <Navbar
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
         text1="O nama"
-        text2="Usluge"
+        text2={<Link to="/usluge">Usluge</Link>}
         text3="Cenovnik"
         text4={<Link to="/prijava">Prijavi se</Link>}
         text5={<Link to="/registracija">Registruj se</Link>}/>
