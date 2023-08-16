@@ -20,10 +20,9 @@ export default function RegistracijaPage(){
                 text3="Cenovnik"
                 text4={<Link to="/prijava">Prijavi se</Link>}
                 text5={<Link to="/registracija">Registruj se</Link>} />
-            <div>
-                    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}method="post">
+                    <form onSubmit={handleSubmit(onSubmit)} method="post" className={styles.form}>
                     <div className={styles.row1}>
-                        <h1>Registruj se</h1>
+                        <h1 className={styles.heading}>Registruj se</h1>
                        <div className={styles.item}>
                             <TextField
                                 id="ime"
@@ -60,8 +59,8 @@ export default function RegistracijaPage(){
                                 {...register('email',{required:true})} />
                                 {errors.email && <p className={styles.error}>Polje je obavezno.</p>} 
                         </div>
-                    </div>
-                    <div className={styles.row2}>
+                        </div>
+                        <div className={styles.row2}>
                         <div className={styles.item}>
                             <TextField
                                 id="korisnickoIme"
@@ -92,9 +91,6 @@ export default function RegistracijaPage(){
                         <ContainedButton text="POTVRDI" type="submit" module={styles.button}/>
                     </div>
                     </form>     
-                </div>
-                
-            
         </>
     )
 }

@@ -3,6 +3,8 @@ import ContainedButton from "../ContainedButton/ContainedButton";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './OsobaCard.module.css';
+import BasicModal from "../BasicModal/BasicModal";
+import IzmenaForm from "../IzmenaForm/IzmenaForm";
 export default function OsobaCard(props){
     return(
         <>
@@ -21,7 +23,7 @@ export default function OsobaCard(props){
         <p>Adresa: <span >Ivana</span></p>
         </div>
         <div className={styles.row4}>
-        <ContainedButton module={styles.button} text={<EditIcon/>}/>
+        <ContainedButton module={styles.button} text={<BasicModal label={<EditIcon/>} child={<IzmenaForm heading={props.formHeading}/>}/>}/>
         <ContainedButton module={styles.button} text={<DeleteIcon/>}/>
         </div>
         </div>

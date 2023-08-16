@@ -1,7 +1,5 @@
 import React from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import styles from "./Profile.module.css"
-import { Link } from "react-router-dom";
+import styles from "./Profil.module.css"
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import EditIcon from '@mui/icons-material/Edit';
 import BasicModal from "../../components/BasicModal/BasicModal";
@@ -10,12 +8,6 @@ import IzmenaForm from "../../components/IzmenaForm/IzmenaForm";
 export default function Profil(){
     return(
         <>
-        <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to="/zaposleniAdmin">Zaposleni</Link>}
-        text3={<Link to="/korisniciAdmin">Korisnici</Link>}
-        text4={<Link to="/profil">Tvoj profil</Link>}
-        text5="Odjavi se"/>
         <div className={styles.box}>
             <div className={styles.info}>
             <h1 className={styles.heading}>Tvoj profil</h1>

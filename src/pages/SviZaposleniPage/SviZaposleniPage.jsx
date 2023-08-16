@@ -22,7 +22,7 @@ export default function SviZaposleniPage(){
         
         </div>
         <div className={styles.item}>
-        <OsobaCard/>
+        <OsobaCard formHeading="Izmeni zaposlenog"/>
         </div>
         <OsobaCard/>
         </>

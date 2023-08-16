@@ -9,7 +9,7 @@ export default function AdminPage(){
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
         text2={<Link to="/zaposleniAdmin">Zaposleni</Link>}
         text3={<Link to="/korisniciAdmin">Korisnici</Link>}
-        text4={<Link to="/profil">Tvoj profil</Link>}
+        text4={<Link to="/profil">Tvoj profil</Link>}aW
         text5="Odjavi se"/>
         </>
     )

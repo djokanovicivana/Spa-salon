@@ -22,7 +22,7 @@ export default function SviKorisniciPage(){
         
         </div>
         <div className={styles.item}>
-        <OsobaCard/>
+        <OsobaCard formHeading="Izmeni korisnika"/>
         </div>
         <OsobaCard/>
         </>

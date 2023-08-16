@@ -7,8 +7,8 @@ export default function ZaposleniPage(){
         <>
        <Navbar
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text3={<Link to="/terminiZaposleni">Termini</Link>}
-        text4={<Link to="/profilZaposleni">Tvoj profil</Link>}
+        text3={<Link to="/terminiKorisnik">Termini</Link>}
+        text4={<Link to="/profilKorisnik">Tvoj profil</Link>}
         text5="Odjavi se"/>
         </>
     )
