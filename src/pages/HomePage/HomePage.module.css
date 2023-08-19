@@ -1,0 +1,54 @@
+ul,
+li {
+    list-style: none;
+    padding: 0;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 4vmin;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.flickity-button {
+    opacity: 0;
+}
+
+.carousel {
+    overflow-y: hidden;
+    overflow-x: auto;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    width: 100vw;
+    height: 50vh;
+    transform: translate(-50%, -50%);
+    animation: fade ease 2s;
+    overflow: hidden;
+}
+
+.carousel img {
+    height: 50vh;
+}
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+
+.home h2 {
+    font-size: 3vmin;
+    text-align: center;
+    letter-spacing: .5vmin;
+    color: rgb(168, 148, 129);
+}
