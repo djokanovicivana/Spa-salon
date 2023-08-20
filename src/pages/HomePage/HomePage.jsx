@@ -2,17 +2,10 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
-import Flickity from 'react-flickity-component';
-
-import './HomePage.module.css';
-
+import Section from '../../components/Section/Section';
+import styled from 'styled-components';
 
 export default function HomePage(){
-    const flickityOptions = {
-        initialIndex: 1,
-        autoPlay: 1000,
-        contain: true
-      }
     
 
     return(
@@ -25,35 +18,61 @@ export default function HomePage(){
         text4={<Link to="/prijava">Prijavi se</Link>}
         text5={<Link to="/registracija">Registruj se</Link>}/>
 
-
-<div className="home">
-    <h2>Najkvalitetnija usluga ceka na vas</h2>
-    <Flickity
-          className={'carousel'}
-          elementType={'div'}
-          options={flickityOptions}
-          disableImagesLoaded={false}
-          reloadOnUpdate
-          static
-          >
-          <img src="/public/img/1.jpg" alt="" />
-          <img src="/public/img/3.jpg" alt="" />
-          <img src="/public/img/4.jpg" alt="" />
-          <img src="/public/img/5.jpg" alt="" />
-          <img src="/public/img/2.jpg" alt="" />
-          <img src="/public/img/6.jpg" alt="" />
-          <img src="/public/img/7.jpg" alt="" />
-          <img src="/public/img/10.jpg" alt="" />
-          <img src="/public/img/9.jpg" alt="" />
-          <img src="/public/img/8.jpg" alt="" />
-          <img src="/public/img/11.jpg" alt="" />
-          <img src="/public/img/12.jpg" alt="" />
-          <img src="/public/img/13.jpg" alt="" />
-          <img src="/public/img/14.jpg" alt="" />
-          </Flickity>
-</div>
-
+<Container>
+            <Section
+                title="Manikir"
+                description="Nudimo Vam uslugu klasičnog manikira i manikira sa ojačanjem noktiju"
+                image="1.jpg"
+                leftbtn="Pogledaj sve usluge"
+                rightbtn="Zakazivanje"
+            />
+            <Section
+                title="Masaža"
+                description="Relax i Sportske masaže sa stručnim licima"
+                image="3.jpg"
+                leftbtn="Pogledaj sve usluge"
+                rightbtn="Zakazivanje"
+            />
+            <Section
+                title="Šminkanje"
+                description="Profesionalno šminkanje za sve prilike"
+                image="12.jpg"
+                leftbtn="Pogledaj sve usluge"
+                rightbtn="Zakazivanje"
+            />
+            <Section
+                title="Frizure za svačiji ukus"
+                description="Ne postoji frizura koju naša frizerka ne ume da napravi"
+                image="5.jpg"
+                leftbtn="Pogledaj sve usluge"
+                rightbtn="Zakazivanje"
+            />
+            <Section
+                title="Veliki izbor boja"
+                description="Za usluge manikira i pedikira spremili smo široku paletu nijansi za vas"
+                image="6.jpg"
+                leftbtn="Pogledaj sve usluge"
+                rightbtn="Zakazivanje"
+            />
+            <Section
+                title="Šišanje + Feniranje"
+                description="Kombinacija ovih usluga po najpovoljnijim cenama u gradu"
+                image="13.jpg"
+                leftbtn="Pogledaj sve usluge"
+                rightbtn="Zakazivanje"
+            />
+            <Section
+                title="Prepustite se stručnim licima"
+                description="Opustite se posle stresnog dana uz RELAX masažu i uživajte"
+                image="2.jpg"
+                leftbtn="Pogledaj sve usluge"
+                rightbtn="Zakazivanje"
+            />
+        </Container>
 <Footer></Footer>
         </>
     )
 }
+const Container = styled.div`
+    height: 100vh;
+`;
