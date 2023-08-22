@@ -3,13 +3,29 @@ import { TextField } from "@mui/material";
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./PrijavaPage.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-
+import { Services } from "../../services/Services";
 export default function PrijavaPage(){
    const { register, handleSubmit, formState: { errors } } = useForm();
-   const onSubmit=(data)=>{
-    console.log(data);
+   const navigate=useNavigate();
+   const onSubmit=async(data)=>{
+    const response=await Services.prijava({'korisnickoIme':data.korisnickoIme,
+'password':data.password});
+   if(response.poruka==='Uspesna prijava'){
+    Services.cuvanjeSesije(response.autorizovan,response.rola);
+    console.log(response.autorizovan);
+    console.log(response.rola);
+    if(response.rola==1){
+        navigate(`/admin/${response.autorizovan}`);  
+    }
+    else if(response.rola==2){
+        navigate(`/zaposleni/${response.autorizovan}`);  
+    }
+    else if(response.rola==3){
+         navigate(`/korisnik/${response.autorizovan}`); 
+    }
+   }
    }
     return(
         <>

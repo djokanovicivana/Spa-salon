@@ -2,13 +2,15 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import TableTabs from "../../components/TableTabs/TableTabs";
+import { useParams } from "react-router-dom";
 export default function TerminiZaposleniPage(){
+    const {idZaposleni}=useParams();
     return (
         <>
-        <Navbar
+       <Navbar
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text3={<Link to="/terminiZaposleni">Termini</Link>}
-        text4={<Link to="/profil">Tvoj profil</Link>}
+        text3={<Link to={`/terminiZaposleni/${idZaposleni}`}>Termini</Link>}
+        text4={<Link to={`/profilZaposleni/${idZaposleni}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
         <TableTabs/>
         </>

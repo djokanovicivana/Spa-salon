@@ -5,11 +5,22 @@ import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import styles from "./RegistracijaPage.module.css";
 import { useForm } from 'react-hook-form';
 import Navbar from "../../components/Navbar/Navbar";
+import { Services } from "../../services/Services";
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 export default function RegistracijaPage(){
     const { register, handleSubmit, formState: { errors }} = useForm();
 
-    const onSubmit=(data)=>{
-        console.log(data);
+    const onSubmit=async(data)=>{
+    const response=await Services.registracija({'ime':data.ime,
+    'prezime':data.prezime,
+'brojTelefona':data.brojTelefona,
+'email':data.email,
+'korisnickoIme':data.korisnickoIme,
+'password':data.password,
+'password_confirmation':data.password_confirmation
+});
+console.log(response);
     }
     return (
         <>

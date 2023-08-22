@@ -3,7 +3,19 @@ import UslugaThumbnail from "../../components/UslugaThumbnail/UslugaThumbnail";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import styles from "./UslugePage.module.css";
+import { useEffect } from "react";
+import { Services } from "../../services/Services";
+import { useState } from "react";
 export default function UslugePage(){
+    const [usluge,setUsluge]=useState([]);
+    useEffect(()=>{
+        const fetchData=async()=>{
+            const response=await Services.sveUsluge();
+            setUsluge(response);
+            console.log(response);
+        };
+        fetchData();
+    },[]);
     return(
         <>
         <Navbar
@@ -14,13 +26,11 @@ export default function UslugePage(){
         text4={<Link to="/prijava">Prijavi se</Link>}
         text5={<Link to="/registracija">Registruj se</Link>}
         className={styles.navbar}/>
-        <div className={styles.uslugeGrid}>
-        <UslugaThumbnail/>
-        <UslugaThumbnail/>
-        <UslugaThumbnail/>
-        <UslugaThumbnail/>
-        <UslugaThumbnail/>
-        </div>
+        {usluge && <div className={styles.uslugeGrid}>
+            {usluge.map((usluga,index)=>(
+                <UslugaThumbnail key={index} nazivUsluge={usluga.ServiceName} cenaUsluge={usluga.ServicePrice}/>))}
+            </div>}
+        
         </>
     )
 }

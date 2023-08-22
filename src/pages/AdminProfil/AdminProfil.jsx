@@ -6,25 +6,29 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Services } from "../../services/Services";
-export default function KorisnikProfil(){
-    const {idKorisnik}=useParams();
+export default function AdminProfil(){
     const [korisnik,setKorisnik]=useState([]);
+     const {idAdmin}=useParams();
     useEffect(()=>{
         const fetchData=async()=>{
-            const response=await Services.mojProfil(idKorisnik);
+            const response=await Services.mojProfil(idAdmin);
             setKorisnik(response);
+            console.log(response);
         };
         fetchData();
-    },[idKorisnik]);
+    },[idAdmin]);
+   
     return(
         <>
         <Navbar
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text3={<Link to="/terminiKorisnik">Termini</Link>}
-        text4={<Link to={`profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+        text2={<Link to={`/zaposleniAdmin/${idAdmin}`}>Zaposleni</Link>}
+        text3={<Link to={`/korisniciAdmin/${idAdmin}`}>Korisnici</Link>}
+        text4={<Link to={`/profilAdmin/${idAdmin}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
         {korisnik &&
-        <Profil ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber}/>}
+        <Profil idKorisnik={idAdmin} ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber}/>
+}
         </>
     )
 }

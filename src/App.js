@@ -12,7 +12,7 @@ import TerminiZaposleniPage from './pages/TerminiZaposleniPage/TerminiZaposleniP
 import KorisnikPage from "./pages/KorisnikPage/KorisnikPage";
 import ZaposleniProfil from './pages/ZaposleniProfil/ZaposleniProfil';
 import KorisnikProfil from './pages/KorisnikProfil/KorisnikProfil';
-
+import AdminProfil from './pages/AdminProfil/AdminProfil';
 
 function App() {
   return (
@@ -21,15 +21,16 @@ function App() {
       <Route path="/" element={<HomePage/>}/>
       <Route path="/prijava" element={<PrijavaPage/>}/> 
       <Route path="/registracija" element={<RegistracijaPage/>}/>
-      <Route path="/admin" elemet={<AdminPage/>}/>
-      <Route path="/profilZaposleni" element={<ZaposleniProfil/>}/>
-      <Route path="/korisniciAdmin" element={<SviKorisniciPage/>}/>
-      <Route path="/zaposleniAdmin" element={<SviZaposleniPage/>}/>
+      <Route path="/admin/:idAdmin" elemet={<AdminPage/>}/>
+      <Route path="/profilZaposleni/:idZaposleni" element={<ZaposleniProfil/>}/>
+      <Route path="/korisniciAdmin/:idAdmin" element={<SviKorisniciPage/>}/>
+      <Route path="/zaposleniAdmin/:idAdmin" element={<SviZaposleniPage/>}/>
       <Route path="/usluge" element={<UslugePage/>}/>
-      <Route path="/zaposleni" element={<ZaposleniPage/>}/>
-      <Route path="/terminiZaposleni" element={<TerminiZaposleniPage/>}/>
-      <Route path="/korisnik" element={<KorisnikPage/>}/>
-      <Route path="/profilKorisnik" element={<KorisnikProfil/>}/>
+      <Route path="/zaposleni/:idZaposleni" element={<ZaposleniPage/>}/>
+      <Route path="/terminiZaposleni/:idZaposleni" element={<TerminiZaposleniPage/>}/>
+      <Route path="/korisnik/:idKorisnik" element={<KorisnikPage/>}/>
+      <Route path="/profilKorisnik/:idKorisnik" element={<KorisnikProfil/>}/>
+      <Route path="/profilAdmin/:idAdmin" element={<AdminProfil/>}/>
       
 
     </Routes>

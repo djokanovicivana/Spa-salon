@@ -1,18 +1,18 @@
-import { TrySharp } from "@mui/icons-material";
+
 import { apiEndpoints } from "../utils/apiUrls";
 import axios from "axios";
-const prijava=async({korisnickoIme, lozinka})=>{
+const prijava=async({korisnickoIme, password})=>{
     try{
-        const response=await axios.post(`${apiEndpoints.endpointPrijava}`,{korisnickoIme,lozinka});
-        return response.data.poruka;
+        const response=await axios.post(`${apiEndpoints.endpointPrijava}.php`,{korisnickoIme,password});
+        return response.data;
     } catch (error) {
         console.error("Greška pri prijavljivanju:", error);
         return null;
     } 
 };
-const registracija=async({ime,prezime,brojTelefona,email,korisnickoIme,lozinka,potvrdjenaLozinka})=>{
+const registracija=async({ime,prezime,brojTelefona,email,korisnickoIme,password,password_confirmation})=>{
     try{
-    const response=await axios.post(`${apiEndpoints.endpointRegistracija}`,{ime,prezime,brojTelefona,email,korisnickoIme,lozinka, potvrdjenaLozinka});
+    const response=await axios.post(`${apiEndpoints.endpointRegistracija}.php`,{ime,prezime,brojTelefona,email,korisnickoIme,password, password_confirmation});
     return response.data.poruka;
     }
     catch (error) {
@@ -22,7 +22,7 @@ const registracija=async({ime,prezime,brojTelefona,email,korisnickoIme,lozinka,p
 }
 const dodajKorisnika=async({ime,prezime,brojTelefona,email,korisnickoIme,lozinka})=>{
     try{
-        const response=await axios.post(`${apiEndpoints.endpointDodajKorisnika}`,{ime,prezime,brojTelefona,email,korisnickoIme,lozinka});
+        const response=await axios.post(`${apiEndpoints.endpointDodajKorisnika}.php`,{ime,prezime,brojTelefona,email,korisnickoIme,lozinka});
         return response.data.poruka;
     }
     catch (error) {
@@ -32,7 +32,7 @@ const dodajKorisnika=async({ime,prezime,brojTelefona,email,korisnickoIme,lozinka
 }
 const mojProfil=async(idKorisnik)=>{
     try{
-    const response=await axios.get(`${apiEndpoints.endpointMojProfil}?idKorisnika=${idKorisnik}`);
+    const response=await axios.get(`${apiEndpoints.endpointMojProfil}.php?idKorisnika=${idKorisnik}`);
     return response.data.podaciOKorisniku;}
     catch(error){
         console.log('error:',error);
@@ -40,7 +40,7 @@ const mojProfil=async(idKorisnik)=>{
 }
 const sviKorisnici=async()=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointSviKorisnici}`);
+        const response=await axios.get(`${apiEndpoints.endpointSviKorisnici}.php`);
         return response.data.korisnici;
     }
     catch(error){
@@ -49,7 +49,7 @@ const sviKorisnici=async()=>{
 }
 const sviZaposleni=async()=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointSviZaposleni}`);
+        const response=await axios.get(`${apiEndpoints.endpointSviZaposleni}.php`);
         return response.data.zaposleni;
     }
     catch(error){
@@ -58,7 +58,7 @@ const sviZaposleni=async()=>{
 }
 const azurirajPodatke=async({idKorisnika,ime,prezime,email,brojTelefona,korisnickoIme,lozinka})=>{
     try{
-    const response=await axios.put(`${apiEndpoints.endpointAzurirajPodatke}?idKorisnika=${idKorisnika}`,{ime:ime,
+    const response=await axios.put(`${apiEndpoints.endpointAzurirajPodatke}?idKorisnika=${idKorisnika}.php`,{ime:ime,
         prezime:prezime,
         email:email,
         brojTelefona:brojTelefona,
@@ -72,7 +72,7 @@ const azurirajPodatke=async({idKorisnika,ime,prezime,email,brojTelefona,korisnic
 }
 const izmeniKorisnika=async({idKorisnika,ime,prezime,email,brojTelefona,korisnickoIme,lozinka})=>{
     try{
-        const response=await axios.put(`${apiEndpoints.endpointIzmeniKorisnika}?idKorisnika=${idKorisnika}`,{
+        const response=await axios.put(`${apiEndpoints.endpointIzmeniKorisnika}?idKorisnika=${idKorisnika}.php`,{
             ime:ime,
             prezime:prezime,
             email:email,
@@ -88,7 +88,7 @@ const izmeniKorisnika=async({idKorisnika,ime,prezime,email,brojTelefona,korisnic
 }
 const zakazaniTermini=async(idZaposlenog)=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointZakazaniTermini}?idZaposlenog=${idZaposlenog}`);
+        const response=await axios.get(`${apiEndpoints.endpointZakazaniTermini}?idZaposlenog=${idZaposlenog}.php`);
         return response.data.termini;
     }
     catch(error){
@@ -97,7 +97,7 @@ const zakazaniTermini=async(idZaposlenog)=>{
 }
 const sveUsluge=async()=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointSveUsluge}`);
+        const response=await axios.get(`${apiEndpoints.endpointSveUsluge}.php`);
         return response.data.usluge;
     }
     catch(error){
@@ -106,7 +106,7 @@ const sveUsluge=async()=>{
 }
 const mojeUsluge=async(idZaposlenog)=>{
 try{
-    const response=await axios.get(`${apiEndpoints.endpointMojeUsluge}?idZaposlenog=${idZaposlenog}`);
+    const response=await axios.get(`${apiEndpoints.endpointMojeUsluge}?idZaposlenog=${idZaposlenog}.php`);
     return response.data.usluge;
 }
 catch(error){
@@ -115,7 +115,7 @@ catch(error){
 }
 const podaciOUsluzi=async(idUsluge)=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointPodaciOUsluzi}?idUsluge=${idUsluge}`);
+        const response=await axios.get(`${apiEndpoints.endpointPodaciOUsluzi}?idUsluge=${idUsluge}.php`);
         return response.data.podaciOUsluzi;
     }
     catch(error){
@@ -124,12 +124,18 @@ const podaciOUsluzi=async(idUsluge)=>{
 }
 const korisniciSlobodniTermini=async(idUsluge)=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointKorisniciSlobodniTermini}?idUsluge=${idUsluge}`);
+        const response=await axios.get(`${apiEndpoints.endpointKorisniciSlobodniTermini}?idUsluge=${idUsluge}.php`);
         return response.data.termini;
     }
     catch(error){
         console.log('error:',error);
     }
+}
+const cuvanjeSesije=(idKorisnika,idRole)=>{
+    sessionStorage.setItem(idKorisnika,idRole);
+}
+const brisanjeSesije=()=>{
+    sessionStorage.clear();
 }
 export const Services={
     prijava,
@@ -144,6 +150,8 @@ export const Services={
     sveUsluge,
     mojeUsluge,
     podaciOUsluzi,
-    korisniciSlobodniTermini
+    korisniciSlobodniTermini,
+    cuvanjeSesije,
+    brisanjeSesije,
 
 }
