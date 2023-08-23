@@ -9,7 +9,7 @@ export default function ZaposleniPage(){
        <Navbar
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
         text3={<Link to="/terminiKorisnik">Termini</Link>}
-        text4={<Link to={`profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+        text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
         </>
     )

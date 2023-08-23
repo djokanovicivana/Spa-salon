@@ -13,6 +13,9 @@ import KorisnikPage from "./pages/KorisnikPage/KorisnikPage";
 import ZaposleniProfil from './pages/ZaposleniProfil/ZaposleniProfil';
 import KorisnikProfil from './pages/KorisnikProfil/KorisnikProfil';
 import AdminProfil from './pages/AdminProfil/AdminProfil';
+import IzmenaForm from './components/IzmenaForm/IzmenaForm';
+import IzmenaAdmin from './pages/IzmenaAdmin/IzmenaAdmin';
+import DodavanjeForm from './components/DodavanjeForm/DodavanjeForm';
 
 function App() {
   return (
@@ -21,7 +24,7 @@ function App() {
       <Route path="/" element={<HomePage/>}/>
       <Route path="/prijava" element={<PrijavaPage/>}/> 
       <Route path="/registracija" element={<RegistracijaPage/>}/>
-      <Route path="/admin/:idAdmin" elemet={<AdminPage/>}/>
+      <Route path="/admin/:idAdmin" element={<AdminPage/>}/>
       <Route path="/profilZaposleni/:idZaposleni" element={<ZaposleniProfil/>}/>
       <Route path="/korisniciAdmin/:idAdmin" element={<SviKorisniciPage/>}/>
       <Route path="/zaposleniAdmin/:idAdmin" element={<SviZaposleniPage/>}/>
@@ -31,6 +34,12 @@ function App() {
       <Route path="/korisnik/:idKorisnik" element={<KorisnikPage/>}/>
       <Route path="/profilKorisnik/:idKorisnik" element={<KorisnikProfil/>}/>
       <Route path="/profilAdmin/:idAdmin" element={<AdminProfil/>}/>
+      <Route path="/azuriranjePodatakaAdmin/:idAdmin" element={<IzmenaForm uloga="Administrator"/>}/>
+      <Route path="/azuriranjePodatakaZaposleni/:idZaposleni" element={<IzmenaForm uloga="Zaposleni"/>}/>
+      <Route path="/azuriranjePodatakaKorisnik/:idKorisnik" element={<IzmenaForm uloga="Korisnik"/>}/>
+      <Route path="/izmenaKorisnika/:idKorisnik/:idAdmin" element={<IzmenaAdmin/>}/>
+      <Route path="/izmenaZaposlenog/:idZaposleni/:idAdmin" element={<IzmenaAdmin/>}/>
+      <Route path="/dodavanjeKorisnika/:idAdmin" element={<DodavanjeForm uloga="Korisnik" heading="Dodaj korisnika:"/>}/>
       
 
     </Routes>

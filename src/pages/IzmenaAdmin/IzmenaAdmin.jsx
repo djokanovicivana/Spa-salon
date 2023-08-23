@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./IzmenaForm.module.css"
+import styles from "./IzmenaAdmin.module.css"
 import { TextField, useThemeProps } from "@mui/material";
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import { useForm } from 'react-hook-form';
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -12,21 +12,18 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
 import { useNavigate } from "react-router-dom";
-export default function IzmenaForm(props){
+export default function IzmenaAdmin(props){
     const navigate=useNavigate();
-    const {idAdmin,idKorisnik,idZaposleni}=useParams();
+    const {idAdmin, idKorisnik,idZaposleni}=useParams();
     const [id,setId]=useState(null);
     const [profil,setProfil]=useState({});
     const [rola,setRola]=useState('');
     const { register, handleSubmit, formState: { errors }, reset} = useForm();
-    console.log(idAdmin);
+
     console.log(idKorisnik);
     console.log(idZaposleni);
   useEffect(() => {
-  if (idAdmin) {
-    setId(idAdmin);
-    setRola('Admin');
-  } else if (idKorisnik) {
+  if (idKorisnik) {
     setId(idKorisnik);
     setRola('Korisnik');
   } else if (idZaposleni) {
@@ -35,7 +32,7 @@ export default function IzmenaForm(props){
   } else {
     setId(null);
   }
-}, [idAdmin, idKorisnik, idZaposleni]);
+}, [idKorisnik, idZaposleni]);
 console.log(id);
     useEffect(()=>{
         const fetchData=async()=>{
@@ -73,9 +70,13 @@ console.log(id);
             autoClose: 1500,
         });
         setTimeout(() => {
-        navigate(`/profil${rola}/${id}`);
+        if(idKorisnik){
+        navigate(`/korisniciAdmin/${idAdmin}`);}
+        else if(idZaposleni){
+            navigate(`/zaposleniAdmin/${idAdmin}`)
+        }
      }, 2000);   
-
+       ;
 
     }else {
         toast.error("Izmena podataka nije uspela! Pokušajte ponovo!", {
@@ -89,20 +90,12 @@ console.log(id);
     }
     return(
         <>
-        {props.uloga==='Administrator' ? (<Navbar
+        <Navbar
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
         text2={<Link to={`/zaposleniAdmin/${idAdmin}`}>Zaposleni</Link>}
         text3={<Link to={`/korisniciAdmin/${idAdmin}`}>Korisnici</Link>}
         text4={<Link to={`/profilAdmin/${idAdmin}`}>Tvoj profil</Link>}
-        text5="Odjavi se"/>) : props.uloga==='Zaposleni'? (<Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text3={<Link to={`/terminiZaposleni/${idZaposleni}`}>Termini</Link>}
-        text4={<Link to={`/profilZaposleni/${idZaposleni}`}>Tvoj profil</Link>}
-        text5="Odjavi se"/>) :  <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text3={<Link to="/terminiKorisnik">Termini</Link>}
-        text4={<Link to={`profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
-        text5="Odjavi se"/>}
+        text5="Odjavi se"/>
         <ToastContainer/>
         <div className={styles.box}>
             <h1 className={styles.heading}>Izmeni podatke:</h1>

@@ -20,10 +20,10 @@ const registracija=async({ime,prezime,brojTelefona,email,korisnickoIme,password,
         return null;
     }
 }
-const dodajKorisnika=async({ime,prezime,brojTelefona,email,korisnickoIme,lozinka})=>{
+const dodajKorisnika=async({ime,prezime,brojTelefona,email,korisnickoIme,password,rola})=>{
     try{
-        const response=await axios.post(`${apiEndpoints.endpointDodajKorisnika}.php`,{ime,prezime,brojTelefona,email,korisnickoIme,lozinka});
-        return response.data.poruka;
+        const response=await axios.post(`${apiEndpoints.endpointDodajKorisnika}.php?rola=${rola}`,{ime,prezime,brojTelefona,email,korisnickoIme,password});
+        return response.data;
     }
     catch (error) {
         console.log("Greška pri dodavanju:", error);
@@ -44,7 +44,7 @@ const sviKorisnici=async()=>{
         return response.data.korisnici;
     }
     catch(error){
-        console.log('error:',error);
+        return error.response.data;
     }
 }
 const sviZaposleni=async()=>{
@@ -56,15 +56,16 @@ const sviZaposleni=async()=>{
         console.log('error:',error);
     }
 }
-const azurirajPodatke=async({idKorisnika,ime,prezime,email,brojTelefona,korisnickoIme,lozinka})=>{
+const azurirajPodatke=async({idKorisnika,ime,prezime,email,brojTelefona,korisnickoIme,password,password_confirmation})=>{
     try{
-    const response=await axios.put(`${apiEndpoints.endpointAzurirajPodatke}?idKorisnika=${idKorisnika}.php`,{ime:ime,
+    const response=await axios.put(`${apiEndpoints.endpointAzurirajPodatke}.php?idKorisnika=${idKorisnika}`,{ime:ime,
         prezime:prezime,
         email:email,
         brojTelefona:brojTelefona,
         korisnickoIme:korisnickoIme,
-        lozinka:lozinka});
-    return response.data.poruka;
+        password:password,
+        password_confirmation:password_confirmation});
+return response.data;
     }
     catch(error){
         console.log("error:",error);

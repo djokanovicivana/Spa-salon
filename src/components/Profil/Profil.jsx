@@ -2,8 +2,7 @@ import React from "react";
 import styles from "./Profil.module.css"
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import EditIcon from '@mui/icons-material/Edit';
-import BasicModal from "../../components/BasicModal/BasicModal";
-import IzmenaForm from "../../components/IzmenaForm/IzmenaForm";
+import { Link } from "react-router-dom";
 export default function Profil(props){
     return(
         <>
@@ -16,9 +15,7 @@ export default function Profil(props){
             <p>Email: <span className={styles.item}>{props.email}</span></p>
             <p>Broj telefona: <span className={styles.item}>{props.brojTelefona}</span></p>
             </div>
-            <BasicModal label={<ContainedButton text={<EditIcon/>} module={styles.button}/>}
-            child={<IzmenaForm heading="Izmeni profil"/>}
-            />
+            <Link to={props.link}><ContainedButton text={<EditIcon/>} module={styles.button}/></Link>
         </div>
         </>
     )

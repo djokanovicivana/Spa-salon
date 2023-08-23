@@ -38,7 +38,7 @@ export default function SviZaposleniPage(){
       {zaposleni && <div>
         {zaposleni.map((item,index)=>(
         <div key={index} className={styles.item}>
-        <ZaposleniCard  formHeading="Izmeni zaposlenog" ime={item.FirstName} prezime={item.LastName} korisnickoIme={item.Username} email={item.email} brojTelefona={item.PhoneNumber}/>
+        <ZaposleniCard  formHeading="Izmeni zaposlenog" ime={item.FirstName} prezime={item.LastName} korisnickoIme={item.Username} email={item.email} brojTelefona={item.PhoneNumber} idZaposleni={item.UserID} idAdmin={idAdmin}/>
         </div>
         ))}
         </div>}

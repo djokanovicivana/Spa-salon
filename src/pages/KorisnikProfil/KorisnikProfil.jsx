@@ -24,7 +24,7 @@ export default function KorisnikProfil(){
         text4={<Link to={`profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
         {korisnik &&
-        <Profil ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber}/>}
+        <Profil ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber} link={`/azuriranjePodatakaKorisnik/${idKorisnik}`}/>}
         </>
     )
 }

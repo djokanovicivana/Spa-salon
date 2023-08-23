@@ -39,7 +39,7 @@
     margin-left: auto;
 }
 
-.row1{
+.row1 {
     margin-right: 3vw;
 }
 
@@ -56,7 +56,8 @@
     cursor: pointer;
     float: right;
 }
-.heading{
-    margin-left:20vw;
-    
+
+.heading {
+    margin-left: 20vw;
+
 }

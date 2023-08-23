@@ -23,7 +23,7 @@ export default function ZaposleniProfil(){
         text3={<Link to={`/terminiZaposleni/${idZaposleni}`}>Termini</Link>}
         text4={<Link to={`/profilZaposleni/${idZaposleni}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
-        {zaposleni && <Profil ime={zaposleni.FirstName} prezime={zaposleni.LastName} korisnickoIme={zaposleni.Username} email={zaposleni.email} brojTelefona={zaposleni.PhoneNumber}/>
+        {zaposleni && <Profil ime={zaposleni.FirstName} prezime={zaposleni.LastName} korisnickoIme={zaposleni.Username} email={zaposleni.email} brojTelefona={zaposleni.PhoneNumber} link={`/azuriranjePodatakaZaposleni/${idZaposleni}`}/>
         }
         </>
     )

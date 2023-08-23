@@ -1,4 +1,15 @@
-
+.box {
+            background: white;
+            max-width: 55vw;
+            border-radius: 20px;
+            min-height: 70vh;
+            padding: 20px;
+            box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+            margin: auto;
+            margin-top: 5vh;
+}
 .form{
     display: flex;
 

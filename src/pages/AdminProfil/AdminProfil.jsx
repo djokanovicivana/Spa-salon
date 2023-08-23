@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Services } from "../../services/Services";
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 export default function AdminProfil(){
     const [korisnik,setKorisnik]=useState([]);
      const {idAdmin}=useParams();
@@ -27,7 +29,7 @@ export default function AdminProfil(){
         text4={<Link to={`/profilAdmin/${idAdmin}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
         {korisnik &&
-        <Profil idKorisnik={idAdmin} ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber}/>
+        <Profil idKorisnik={idAdmin} ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber} link={`/azuriranjePodatakaAdmin/${idAdmin}`}/>
 }
         </>
     )

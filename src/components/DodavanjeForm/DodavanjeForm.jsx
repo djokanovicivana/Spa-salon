@@ -3,13 +3,50 @@ import styles from "./DodavanjeForm.module.css"
 import { TextField } from "@mui/material";
 import ContainedButton from "../ContainedButton/ContainedButton";
 import { useForm } from 'react-hook-form';
+import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Services } from "../../services/Services";
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
+import { useNavigate } from "react-router-dom";
 export default function DodavanjeForm(props){
+    const navigate=useNavigate();
+    const {idAdmin}=useParams();
     const {register, handleSubmit, formState:{errors}}=useForm();
-    const onSubmit=(data)=>{
-        console.log(data);
+
+    const onSubmit=async(data)=>{
+        if(props.uloga==='Korisnik'){
+            const response=await Services.dodajKorisnika({'ime':data.ime, 'prezime':data.prezime, 'brojTelefona':data.brojTelefona,'email':data.email, 'korisnickoIme':data.korisnickoIme, 'password':data.password,'rola':3});
+        if(response && response.poruka==='Registracija uspešna.'){
+          toast.success("Korisnik je uspešno dodat!", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1500,
+        });
+        setTimeout(() => {
+        navigate(`/korisniciAdmin/${idAdmin}`);
+     }, 2000);  
+    }else{
+        toast.success("Dodavanje nije uspelo! Pokušaj ponovo!", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1500,
+        });
+    }
+        }
+       
     }
     return(
-        <><div>
+        <>
+        <Navbar
+        logo={<Link to="/">KOZMETIČKI SALON</Link>}
+        text2={<Link to={`/zaposleniAdmin/${idAdmin}`}>Zaposleni</Link>}
+        text3={<Link to={`/korisniciAdmin/${idAdmin}`}>Korisnici</Link>}
+        text4={<Link to={`/profilAdmin/${idAdmin}`}>Tvoj profil</Link>}
+        text5="Odjavi se"/>
+        <ToastContainer/>
+            <div className={styles.box}>
             <h1>{props.heading}</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}method="post">
                     <div className={styles.row1}> 

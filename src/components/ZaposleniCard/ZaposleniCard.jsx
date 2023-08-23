@@ -3,8 +3,7 @@ import ContainedButton from "../ContainedButton/ContainedButton";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './ZaposleniCard.module.css';
-import BasicModal from "../BasicModal/BasicModal";
-import IzmenaForm from "../IzmenaForm/IzmenaForm";
+import { Link } from "react-router-dom";
 export default function ZaposleniCard(props){
     return(
         <>
@@ -19,7 +18,7 @@ export default function ZaposleniCard(props){
         <p>Broj telefona: <span>{props.brojTelefona}</span></p>
         </div>
         <div className={styles.row4}>
-        <ContainedButton module={styles.button} text={<BasicModal label={<EditIcon/>} child={<IzmenaForm heading={props.formHeading}/>}/>}/>
+        <Link to={`/izmenaZaposlenog/${props.idZaposleni}/${props.idAdmin}`}><ContainedButton module={styles.button} text={<EditIcon/>}/></Link> 
         <ContainedButton module={styles.button} text={<DeleteIcon/>}/>
         </div>
         </div>

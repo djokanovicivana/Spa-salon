@@ -31,13 +31,12 @@ export default function SviKorisniciPage(){
         text5="Odjavi se"/>
         <div  className={styles.heading}>
         <h1>Svi korisnici</h1>
-        <BasicModal child={<DodavanjeForm heading="Dodaj korisnika"/>} label={<ContainedButton module={styles.button} text={<AddIcon/>}/>}/>
-        
+        <Link to={`/dodavanjeKorisnika/${idAdmin}`}><ContainedButton module={styles.button} text={<AddIcon/>}/></Link>
         </div>
         {korisnici && <div>
         {korisnici.map((korisnik,index)=>(
         <div key={index} className={styles.item}>
-        <KorisniciCard formHeading="Izmeni korisnika" ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber}/>
+        <KorisniciCard formHeading="Izmeni korisnika" ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber} idKorisnika={korisnik.UserID} idAdmin={idAdmin}/>
         </div>
         ))}
         </div>

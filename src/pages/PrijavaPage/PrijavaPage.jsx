@@ -6,13 +6,17 @@ import styles from "./PrijavaPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { Services } from "../../services/Services";
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 export default function PrijavaPage(){
    const { register, handleSubmit, formState: { errors } } = useForm();
    const navigate=useNavigate();
    const onSubmit=async(data)=>{
     const response=await Services.prijava({'korisnickoIme':data.korisnickoIme,
 'password':data.password});
-   if(response.poruka==='Uspesna prijava'){
+console.log(response);
+  if(response && response.poruka==='Uspesna prijava'){
+    console.log(response);
     Services.cuvanjeSesije(response.autorizovan,response.rola);
     console.log(response.autorizovan);
     console.log(response.rola);
@@ -25,8 +29,14 @@ export default function PrijavaPage(){
     else if(response.rola==3){
          navigate(`/korisnik/${response.autorizovan}`); 
     }
+   }else{
+toast.error("Korisničko ime ili lozinka su pogrešni! Pokušajte ponovo!", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
    }
-   }
+}
+
+   
     return(
         <>
      <Navbar 
@@ -36,6 +46,7 @@ export default function PrijavaPage(){
     text3="Cenovnik" 
     text4={<Link to="/prijava">Prijavi se</Link>}
     text5={<Link to="/registracija">Registruj se</Link>}/>
+    <ToastContainer/>
   <div className={styles.parent}>
         <div className={styles.form}>
             <div className={styles.formItems}>
