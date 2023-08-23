@@ -1,55 +1,37 @@
 .box {
-            background: white;
-            max-width: 55vw;
-            border-radius: 20px;
-            min-height: 70vh;
-            padding: 20px;
-            box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
-            -webkit-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
-            margin: auto;
-            margin-top: 5vh;
-}
-.form{
-    display: flex;
+    background: white;
+    max-width: 55vw;
+    border-radius: 20px;
+    min-height: 70vh;
+    padding: 20px;
+    box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+    margin: auto;
+    margin-top: 5vh;
 
-    
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    position:relative;
+    left:20%;
+    padding-bottom: 0;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-basis: 50%;
 }
 
 .row1 {
-    margin-left: 100px;
-    margin-right: 50px;
-    margin-top: 0vh;
-
+    margin-right: 3vw;
 }
-
 .row2 {
-    margin-right: 100px;
-    margin-top: 0vh;
-}
-
-h1 {
-    position: relative;
-    line-height: 1.2em;
-    color: #fb6f92;
-    margin-left:7vw;
-    margin-top:7vh;
-}
-
-h1:before {
-    position: absolute;
-    left: 2;
-    top: 1.2em;
-    height: 0;
-    width: 50px;
-    content: '';
-    border-top: 2px solid #fb6f92;
-}
-
-
-.item {
-    margin-bottom: 25px;
-    color: #fb6f92;
+    margin-right: 3vw;
 }
 
 .button {
@@ -63,4 +45,10 @@ h1:before {
     width: 220px;
     border-radius: 20px;
     cursor: pointer;
+    float: right;
+}
+
+.heading {
+    text-align: center;
+
 }

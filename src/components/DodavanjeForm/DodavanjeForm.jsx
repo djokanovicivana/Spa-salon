@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./DodavanjeForm.module.css"
-import { TextField } from "@mui/material";
+import { TextField, Select, MenuItem } from "@mui/material";
 import ContainedButton from "../ContainedButton/ContainedButton";
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { useParams } from "react-router-dom";
@@ -15,7 +15,15 @@ import { useNavigate } from "react-router-dom";
 export default function DodavanjeForm(props){
     const navigate=useNavigate();
     const {idAdmin}=useParams();
-    const {register, handleSubmit, formState:{errors}}=useForm();
+    const {register, handleSubmit, control, formState:{errors}}=useForm();
+    const [usluge,setUsluge]=useState([]);
+    useEffect(()=>{
+        const fetchData=async()=>{
+            const response=await Services.sveUsluge();
+            setUsluge(response);
+        };
+        fetchData();
+        },[idAdmin]);
 
     const onSubmit=async(data)=>{
         if(props.uloga==='Korisnik'){
@@ -34,9 +42,31 @@ export default function DodavanjeForm(props){
           autoClose: 1500,
         });
     }
+        }else if (props.uloga === 'Zaposleni' && usluge) {
+  const selectedUslugeIds = data.usluge.reduce((acc, nazivUsluge) => {
+  const selectedUsluga = usluge.find((usluga) => usluga.ServiceName === nazivUsluge);
+  if (selectedUsluga) {
+    acc.push(selectedUsluga.ServiceID);
+  }
+  return acc;
+}, []);
+      const response=await Services.dodajKorisnika({'ime':data.ime, 'prezime':data.prezime, 'brojTelefona':data.brojTelefona,'email':data.email, 'korisnickoIme':data.korisnickoIme, 'password':data.password,'rola':2,'usluga':selectedUslugeIds});
+        if(response && response.poruka==='Registracija uspešna.'){
+          toast.success("Zaposleni je uspešno dodat!", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1500,
+        });
+        setTimeout(() => {
+        navigate(`/zaposleniAdmin/${idAdmin}`);
+     }, 2000);  
+}else{
+        toast.success("Dodavanje nije uspelo! Pokušaj ponovo!", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1500,
+        });
+
         }
-       
-    }
+}}
     return(
         <>
         <Navbar
@@ -47,7 +77,7 @@ export default function DodavanjeForm(props){
         text5="Odjavi se"/>
         <ToastContainer/>
             <div className={styles.box}>
-            <h1>{props.heading}</h1>
+            <h1 className={styles.heading}>{props.heading}</h1>
                     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}method="post">
                     <div className={styles.row1}> 
                        <div className={styles.item}>
@@ -107,22 +137,32 @@ export default function DodavanjeForm(props){
                             {...register('password',{required:true})} />
                             {errors.password && <p className={styles.error}>Polje je obavezno.</p>} 
                         </div>
-                       <div className={styles.item}>
-    {props.uloga === 'Zaposleni' && (
-        <>
-            <TextField
-                label="Usluga"
-                id="usluga"
-                name="usluga"
-                variant="outlined"
-                type="text"
-                {...register('usluga', { required: true })}
+                        </div> 
+  <div className={styles.row3}>
+        {props.uloga === "Zaposleni" && (
+          <div className={styles.item}>
+            <Controller
+              name="usluge"
+              control={control}
+              defaultValue={['']}
+              render={({ field }) => (
+                <Select
+                  sx={{width:226}}
+                  multiple
+                  value={field.value}
+                  onChange={(e) => field.onChange(e.target.value)}
+                  renderValue={(selected) => selected.join(", ")}
+                >
+                  {usluge && usluge.map((usluga, index) => (
+                    <MenuItem key={index} value={usluga.ServiceName}>
+                      {usluga.ServiceName}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
             />
-            {errors.usluga && <p className={styles.error}>Polje je obavezno.</p>}
-        </>
-    )}
-</div>
-
+          </div>
+        )}
                         <ContainedButton text="POTVRDI" type="submit" module={styles.button}/>
                     </div>
                     </form>     

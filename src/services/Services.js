@@ -20,9 +20,9 @@ const registracija=async({ime,prezime,brojTelefona,email,korisnickoIme,password,
         return null;
     }
 }
-const dodajKorisnika=async({ime,prezime,brojTelefona,email,korisnickoIme,password,rola})=>{
+const dodajKorisnika=async({ime,prezime,brojTelefona,email,korisnickoIme,password,rola,usluga})=>{
     try{
-        const response=await axios.post(`${apiEndpoints.endpointDodajKorisnika}.php?rola=${rola}`,{ime,prezime,brojTelefona,email,korisnickoIme,password});
+        const response=await axios.post(`${apiEndpoints.endpointDodajKorisnika}.php?rola=${rola}`,{ime,prezime,brojTelefona,email,korisnickoIme,password,usluga});
         return response.data;
     }
     catch (error) {

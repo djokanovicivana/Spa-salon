@@ -32,7 +32,7 @@ export default function SviZaposleniPage(){
         text5="Odjavi se"/>
         <div  className={styles.heading}>
         <h1>Svi zaposleni</h1>
-        <BasicModal child={<DodavanjeForm heading="Dodaj zaposlenog" uloga="Zaposleni"/>} label={<ContainedButton module={styles.button} text={<AddIcon/>}/>}/>
+        <Link to={`/dodavanjeZaposlenog/${idAdmin}`}><ContainedButton module={styles.button} text={<AddIcon/>}/></Link>
         
         </div>
       {zaposleni && <div>

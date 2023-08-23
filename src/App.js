@@ -40,6 +40,7 @@ function App() {
       <Route path="/izmenaKorisnika/:idKorisnik/:idAdmin" element={<IzmenaAdmin/>}/>
       <Route path="/izmenaZaposlenog/:idZaposleni/:idAdmin" element={<IzmenaAdmin/>}/>
       <Route path="/dodavanjeKorisnika/:idAdmin" element={<DodavanjeForm uloga="Korisnik" heading="Dodaj korisnika:"/>}/>
+      <Route path="/dodavanjeZaposlenog/:idAdmin" element={<DodavanjeForm uloga="Zaposleni" heading="Dodaj zaposlenog:"/>}/>
       
 
     </Routes>
