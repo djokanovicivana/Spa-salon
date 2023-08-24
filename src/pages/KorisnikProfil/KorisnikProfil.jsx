@@ -20,8 +20,9 @@ export default function KorisnikProfil(){
         <>
         <Navbar
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
+        text2={<Link to={`/zakazivanjeTermina/${idKorisnik}`}>Zakaži termin</Link>}
         text3={<Link to="/terminiKorisnik">Termini</Link>}
-        text4={<Link to={`profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+        text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
         {korisnik &&
         <Profil ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber} link={`/azuriranjePodatakaKorisnik/${idKorisnik}`}/>}

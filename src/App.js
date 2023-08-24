@@ -16,6 +16,7 @@ import AdminProfil from './pages/AdminProfil/AdminProfil';
 import IzmenaForm from './components/IzmenaForm/IzmenaForm';
 import IzmenaAdmin from './pages/IzmenaAdmin/IzmenaAdmin';
 import DodavanjeForm from './components/DodavanjeForm/DodavanjeForm';
+import ZakazivanjeTerminaPage from './pages/ZakazivanjeTerminaPage/ZakazivanjeTerminaPage';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
       <Route path="/izmenaZaposlenog/:idZaposleni/:idAdmin" element={<IzmenaAdmin/>}/>
       <Route path="/dodavanjeKorisnika/:idAdmin" element={<DodavanjeForm uloga="Korisnik" heading="Dodaj korisnika:"/>}/>
       <Route path="/dodavanjeZaposlenog/:idAdmin" element={<DodavanjeForm uloga="Zaposleni" heading="Dodaj zaposlenog:"/>}/>
+      <Route path="/zakazivanjeTermina/:idKorisnik" element={<ZakazivanjeTerminaPage/>}/>
       
 
     </Routes>

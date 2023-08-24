@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./IzmenaForm.module.css"
-import { TextField, useThemeProps } from "@mui/material";
+import { TextField } from "@mui/material";
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import { useForm } from 'react-hook-form';
 import Navbar from "../Navbar/Navbar";
@@ -98,10 +98,11 @@ console.log(id);
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
         text3={<Link to={`/terminiZaposleni/${idZaposleni}`}>Termini</Link>}
         text4={<Link to={`/profilZaposleni/${idZaposleni}`}>Tvoj profil</Link>}
-        text5="Odjavi se"/>) :  <Navbar
+        text5="Odjavi se"/>) :    <Navbar
         logo={<Link to="/">KOZMETIČKI SALON</Link>}
+        text2={<Link to={`/zakazivanjeTermina/${idKorisnik}`}>Zakaži termin</Link>}
         text3={<Link to="/terminiKorisnik">Termini</Link>}
-        text4={<Link to={`profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+        text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>}
         <ToastContainer/>
         <div className={styles.box}>
