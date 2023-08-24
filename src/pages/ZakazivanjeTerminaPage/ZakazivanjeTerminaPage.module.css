@@ -104,3 +104,10 @@
     font-weight: bolder;
     margin-left: 20px;
 }
+.error{
+    font-size: 1.5em;
+    color: #fb6f92;
+    font-weight: bolder;
+    text-align: center;
+    justify-content: center;
+}

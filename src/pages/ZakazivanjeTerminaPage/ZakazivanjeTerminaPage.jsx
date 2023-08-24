@@ -18,8 +18,9 @@ import styles from "./ZakazivanjeTerminaPage.module.css";
 export default function ZakazivanjeTerminaPage(){
     const {idKorisnik}=useParams();
     const [usluge,setUsluge]=useState([]);
-    const [selectedDate,setSelectedDate]=useState(null);
     const { control, handleSubmit, formState: { errors } } = useForm();
+    const [termini, setTermini]=useState(null);
+    const [error, setError]=useState(null);
     useEffect(()=>{
         const fetchData=async()=>{
             const uslugeResponse=await Services.sveUsluge();
@@ -27,9 +28,26 @@ export default function ZakazivanjeTerminaPage(){
         };
         fetchData();
     },[idKorisnik]);
-    const onSubmit=(data)=>{
-        console.log(data);
+    const onSubmit=async(data)=>{
+        setTermini(null);
+    const nazivUsluge = data.usluga;
+const selectedUsluga = usluge.find((usluga) => usluga.ServiceName === nazivUsluge);
+
+if (selectedUsluga) {
+    const selectedUslugaId = selectedUsluga.ServiceID;
+    console.log(selectedUslugaId);
+    console.log(data.datum);
+    const response=await Services.korisniciSlobodniTermini({
+        'idUsluge':selectedUslugaId,
+        'datum':data.datum,
+    });
+    if(response!=='Nema slobodnih termina za Vašu pretragu'){
+        setTermini(response.termini);
+    }else {
+        setError(response);
     }
+    
+    }}
     return(
         <>
         <Navbar
@@ -38,7 +56,7 @@ export default function ZakazivanjeTerminaPage(){
         text3={<Link to="/terminiKorisnik">Termini</Link>}
         text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
-           {usluge && <form method="post" onSubmit={handleSubmit(onSubmit)}>
+           {usluge && <form method="get" onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.searchBox}>
             
            <Controller
@@ -64,15 +82,14 @@ export default function ZakazivanjeTerminaPage(){
             />
             
             <Controller
-      name="selectedDate"
+      name="datum"
       control={control}
       defaultValue={null}
       render={({ field }) => (
        <div className={styles.item}>
         <p className={styles.label}>Izaberi datum:</p>
         <DatePicker selected={field.value} onChange={date => field.onChange(date)} 
-        className={styles.datePicker} 
-        calendarClassName={styles.calendar}/>
+        className={styles.datePicker} />
         </div>
       )}
     />
@@ -81,73 +98,31 @@ export default function ZakazivanjeTerminaPage(){
           </div>
           </div>
         </form>}
-<div className={styles.box}>
+
     
-        <div className={styles.osoba}>
-            <p className={styles.heading}><span>Ivana </span><span>Djokanovic</span></p>
-            <div className={styles.termini}>
-                <p>14:50<span>{<AddIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-            </div>
+   
+     
+{termini? (
+  termini.map((termin, index) => (
+    <div className={styles.box} key={index}>
+      <div className={styles.osoba}>
+        <p className={styles.heading}>
+          <span>{termin.FirstName} </span>
+          <span>{termin.LastName}</span>
+        </p>
+        <div className={styles.termini}>
+             {/*{termin.appointments.map((vreme, appIndex) => (
+            <p key={appIndex}>
+              {vreme}
+              <span>{<CheckIcon />}</span>
+            </p>
+             ))} */}
+        
         </div>
-          <div className={styles.osoba}>
-            <p className={styles.heading}><span>Ivana </span><span>Djokanovic</span></p>
-            <div className={styles.termini}>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span><span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-                <p>14:50<span>{<CheckIcon/>}</span></p>
-                <p>20:25<span>{<CheckIcon/>}</span></p>
-                <p>16:50<span>{<CheckIcon/>}</span></p>
-            </div>
-        </div>
-        </div>
-        </>
-    )
-}
+      </div>
+    </div>
+  ))
+) : error? (<h3 className={styles.error}>Nema slobodnih termina za tvoju pretragu!</h3>):null
+          }
+</>)}
+        

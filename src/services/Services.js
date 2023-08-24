@@ -123,13 +123,14 @@ const podaciOUsluzi=async(idUsluge)=>{
         console.log('error:',error);
     }
 }
-const korisniciSlobodniTermini=async(idUsluge)=>{
+const korisniciSlobodniTermini=async({idUsluge,datum})=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointKorisniciSlobodniTermini}?idUsluge=${idUsluge}.php`);
-        return response.data.termini;
+        const response=await axios.get(`${apiEndpoints.endpointKorisniciSlobodniTermini}.php?idUsluge=${idUsluge}?datum=${datum}`);
+        return response.data;
     }
     catch(error){
         console.log('error:',error);
+        return error.response.data.poruka;
     }
 }
 const cuvanjeSesije=(idKorisnika,idRole)=>{
