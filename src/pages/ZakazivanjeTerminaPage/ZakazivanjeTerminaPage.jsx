@@ -109,14 +109,16 @@ if (selectedUsluga) {
         <p className={styles.heading}>
           <span>{termin.FirstName} </span>
           <span>{termin.LastName}</span>
+          
         </p>
         <div className={styles.termini}>
-             {/*{termin.appointments.map((vreme, appIndex) => (
+          
+             {termin.appointments.split(',').map((vreme, appIndex) => (
             <p key={appIndex}>
               {vreme}
               <span>{<CheckIcon />}</span>
             </p>
-             ))} */}
+             ))} 
         
         </div>
       </div>
