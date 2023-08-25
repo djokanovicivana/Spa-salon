@@ -20,7 +20,7 @@ export default function SviZaposleniPage(){
             setZaposleni(response);
         };
         fetchData();
-    },[]);
+    },[zaposleni]);
 
     return(
         <>

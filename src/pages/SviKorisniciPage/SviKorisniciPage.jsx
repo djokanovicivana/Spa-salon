@@ -20,7 +20,7 @@ export default function SviKorisniciPage(){
             setKorisnici(response);
         };
         fetchData();
-    },[]);
+    },[korisnici]);
     return(
         <>
          <Navbar

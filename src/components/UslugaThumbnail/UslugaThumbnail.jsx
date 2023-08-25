@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./UslugaThumbnail.module.css";
-
+import { Navigate, useNavigate } from "react-router-dom";
 export default function UslugaThumbnail(props){
+    const navigate=useNavigate();
     const handleThumbnailClick=()=>{
-        
+        navigate(`/opisUsluge/${props.idUsluge}`)
     }
     return (
         <div className={styles.thumbnail} onClick={handleThumbnailClick}>

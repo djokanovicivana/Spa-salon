@@ -28,7 +28,7 @@ export default function UslugePage(){
         className={styles.navbar}/>
         {usluge && <div className={styles.uslugeGrid}>
             {usluge.map((usluga,index)=>(
-                <UslugaThumbnail key={index} nazivUsluge={usluga.ServiceName} cenaUsluge={usluga.ServicePrice}/>))}
+                <UslugaThumbnail key={index} nazivUsluge={usluga.ServiceName} cenaUsluge={usluga.ServicePrice} idUsluge={usluga.ServiceID}/>))}
             </div>}
         
         </>

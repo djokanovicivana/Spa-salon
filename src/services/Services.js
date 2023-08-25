@@ -181,6 +181,17 @@ const uzimanjeSesije = () => {
 
     return null; 
 }
+const obrisiKorisnika=async({idKorisnika, rola})=>{
+    try{
+        const response=await axios.get(`${apiEndpoints.endpointObrisiKorisnika}.php?idKorisnika=${idKorisnika}&rola=${rola}`);
+        return response.data.poruka;
+    }
+    catch(error){
+        console.log('error:',error);
+        return error.response.data.poruka;
+    }
+
+}
 export const Services={
     prijava,
     registracija,
@@ -200,6 +211,7 @@ export const Services={
     uzimanjeSesije,
     zakaziTermin,
     korisniciZakazaniTermini,
-    otkaziTermin
+    otkaziTermin,
+    obrisiKorisnika
 
 }

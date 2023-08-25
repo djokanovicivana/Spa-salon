@@ -18,4 +18,5 @@ export const apiEndpoints = {
     endpointKorisniciZakazaniTermini: `${apiUrl}korisniciZakazaniTermini`,
     endpointZakaziTermin: `${apiUrl}zakaziTermin`,
     endpointOtkaziTermin: `${apiUrl}otkaziTermin`,
+    endpointObrisiKorisnika: `${apiUrl}obrisiKorisnika`,
 }

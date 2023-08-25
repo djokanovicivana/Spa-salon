@@ -4,9 +4,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import styles from './KorisniciCard.module.css';
 import { Link } from "react-router-dom";
+import { Services } from "../../services/Services";
+import BasicModal from "../BasicModal/BasicModal";
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 export default function KorisniciCard(props){
     return(
         <>
+        <ToastContainer/>
         <div className={styles.box}>
         <div className={styles.row}>
         <p>Ime: <span>{props.ime}</span></p>
@@ -19,7 +24,25 @@ export default function KorisniciCard(props){
         </div>
         <div className={styles.row4}>
         <Link to={`/izmenaKorisnika/${props.idKorisnika}/${props.idAdmin}`}><ContainedButton module={styles.button} text={<EditIcon/>}/></Link> 
-        <ContainedButton module={styles.button} text={<DeleteIcon/>}/>
+        <BasicModal label={<ContainedButton module={styles.button} text={<DeleteIcon/>}/>} text={<p className={styles.modalText}>Da li ste sigurni da želite da obrišete korisnika?</p>} 
+        onConfirm={async()=>{
+        {console.log(props.idKorisnika)};
+        const response=await Services.obrisiKorisnika({'idKorisnika':props.idKorisnika,
+        'rola':3});
+        if(response==='Uspesno obrisan korisnik'){
+         toast.success("Korisnik je uspešno obrisan!", {
+          position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1500,
+        });
+        }else{
+            toast.error("Došlo je do greške. Pokušajte ponovo!", {
+          position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1500,
+        });
+        }
+        }}
+        />
+        
         </div>
         </div>
         </>
