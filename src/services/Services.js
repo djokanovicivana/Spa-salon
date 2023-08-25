@@ -145,10 +145,21 @@ const zakaziTermin=async({idKorisnika,idTermina})=>{
 const korisniciZakazaniTermini=async(idKorisnika)=>{
     try{
     const response=await axios.get(`${apiEndpoints.endpointKorisniciZakazaniTermini}.php?idKorisnika=${idKorisnika}`);
-    return response.data.poruka;
+    return response.data;
 }catch(error){
     return error.response.data.poruka;
 }}
+const otkaziTermin=async({idKorisnika,idTermina})=>{
+    try{
+    const response=await axios.get(`${apiEndpoints.endpointOtkaziTermin}.php?idKorisnika=${idKorisnika}&idTermina=${idTermina}`);
+    return response.data.poruka;
+    }
+    catch(error){
+        console.log('error:',error);
+        return error.response.data.poruka;
+    }
+
+}
 const cuvanjeSesije = ({ idKorisnika, idRole }) => {
     const data = {
         idKorisnika: idKorisnika,
@@ -188,6 +199,7 @@ export const Services={
     brisanjeSesije,
     uzimanjeSesije,
     zakaziTermin,
-    korisniciZakazaniTermini
+    korisniciZakazaniTermini,
+    otkaziTermin
 
 }

@@ -47,3 +47,7 @@
     cursor: pointer;
     margin-left: 70%;
 }
+.button:hover{
+    background: white;
+    color:#fb6f92;
+}
