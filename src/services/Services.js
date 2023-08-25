@@ -125,7 +125,7 @@ const podaciOUsluzi=async(idUsluge)=>{
 }
 const korisniciSlobodniTermini=async({idUsluge,datum})=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointKorisniciSlobodniTermini}.php?idUsluge=${idUsluge}?datum=${datum}`);
+        const response=await axios.get(`${apiEndpoints.endpointKorisniciSlobodniTermini}.php?idUsluge=${idUsluge}&datum=${datum}`);
         return response.data;
     }
     catch(error){
