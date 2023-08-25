@@ -113,6 +113,7 @@ if (selectedUsluga) {
         <p className={styles.heading}>
           <span>{termin.FirstName} </span>
           <span>{termin.LastName}</span>
+          
         </p>
         <div className={styles.termini}>
              {termin.appointments.split(',').map((vreme, appIndex)=> (
