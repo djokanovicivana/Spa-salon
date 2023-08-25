@@ -84,17 +84,21 @@
     -webkit-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
     align-items: center;
-    margin-top: 8vh;
+    margin-top: 5vh;
 }
 .termini{
     display:flex;
-    margin-left:30%;
+    gap:2vw;
+    float:left;
    flex-wrap: wrap;
    color:#fb6f92;
+   font-size: 1.2em;
+   margin-left:30%;
    font-weight: bold;
 }
 .termini p:hover{
     font-weight: bolder;
+    color:black;
     cursor: pointer;
 
 }
@@ -103,6 +107,7 @@
     color:#fb6f92;
     font-weight: bolder;
     margin-left: 20px;
+    width:30%;
 }
 .error{
     font-size: 1.5em;
@@ -110,4 +115,11 @@
     font-weight: bolder;
     text-align: center;
     justify-content: center;
+}
+.modalText{
+    color:#fb6f92;
+    font-size: 1.5em;
+    margin-top: 0;
+    text-align: center;
+    font-weight: bolder;
 }

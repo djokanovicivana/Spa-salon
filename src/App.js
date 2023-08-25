@@ -17,6 +17,7 @@ import IzmenaForm from './components/IzmenaForm/IzmenaForm';
 import IzmenaAdmin from './pages/IzmenaAdmin/IzmenaAdmin';
 import DodavanjeForm from './components/DodavanjeForm/DodavanjeForm';
 import ZakazivanjeTerminaPage from './pages/ZakazivanjeTerminaPage/ZakazivanjeTerminaPage';
+import TerminiKorisnikPage from './pages/TerminiKorisnikPage/TerminiKorisnikPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
       <Route path="/usluge" element={<UslugePage/>}/>
       <Route path="/zaposleni/:idZaposleni" element={<ZaposleniPage/>}/>
       <Route path="/terminiZaposleni/:idZaposleni" element={<TerminiZaposleniPage/>}/>
+      <Route path="/terminiKorisnik/:idKorisnik" element={<TerminiKorisnikPage/>}/>
       <Route path="/korisnik/:idKorisnik" element={<KorisnikPage/>}/>
       <Route path="/profilKorisnik/:idKorisnik" element={<KorisnikProfil/>}/>
       <Route path="/profilAdmin/:idAdmin" element={<AdminProfil/>}/>

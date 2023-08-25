@@ -17,7 +17,7 @@ export default function PrijavaPage(){
 console.log(response);
   if(response && response.poruka==='Uspesna prijava'){
     console.log(response);
-    Services.cuvanjeSesije(response.autorizovan,response.rola);
+    Services.cuvanjeSesije({'idKorisnika':response.autorizovan,'idRole':response.rola});
     console.log(response.autorizovan);
     console.log(response.rola);
     if(response.rola==1){

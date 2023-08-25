@@ -116,7 +116,7 @@ catch(error){
 }
 const podaciOUsluzi=async(idUsluge)=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointPodaciOUsluzi}?idUsluge=${idUsluge}.php`);
+        const response=await axios.get(`${apiEndpoints.endpointPodaciOUsluzi}.php?idUsluge=${idUsluge}`);
         return response.data.podaciOUsluzi;
     }
     catch(error){
@@ -133,11 +133,42 @@ const korisniciSlobodniTermini=async({idUsluge,datum})=>{
         return error.response.data.poruka;
     }
 }
-const cuvanjeSesije=(idKorisnika,idRole)=>{
-    sessionStorage.setItem(idKorisnika,idRole);
+const zakaziTermin=async({idKorisnika,idTermina})=>{
+    try{
+        const response=await axios.get(`${apiEndpoints.endpointZakaziTermin}.php?idKorisnika=${idKorisnika}&idTermina=${idTermina}`);
+        return response.data.poruka;
+    }catch(error){
+        console.log('error',error);
+        return error.response.data.poruka;
+    }
+}
+const korisniciZakazaniTermini=async(idKorisnika)=>{
+    try{
+    const response=await axios.get(`${apiEndpoints.endpointKorisniciZakazaniTermini}.php?idKorisnika=${idKorisnika}`);
+    return response.data.poruka;
+}catch(error){
+    return error.response.data.poruka;
+}}
+const cuvanjeSesije = ({ idKorisnika, idRole }) => {
+    const data = {
+        idKorisnika: idKorisnika,
+        idRole: idRole
+    };
+
+    sessionStorage.setItem('userData', JSON.stringify(data));
 }
 const brisanjeSesije=()=>{
     sessionStorage.clear();
+}
+const uzimanjeSesije = () => {
+    const storedData = sessionStorage.getItem('userData');
+
+    if (storedData) {
+        const userData = JSON.parse(storedData);
+        return userData.idKorisnika;
+    }
+
+    return null; 
 }
 export const Services={
     prijava,
@@ -155,5 +186,8 @@ export const Services={
     korisniciSlobodniTermini,
     cuvanjeSesije,
     brisanjeSesije,
+    uzimanjeSesije,
+    zakaziTermin,
+    korisniciZakazaniTermini
 
 }

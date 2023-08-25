@@ -9,7 +9,10 @@ export default function BasicModal(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const handleConfirm=()=>{
+    props.onConfirm();
+    handleClose();
+  }
   return (
     <div>
       <p className={styles.label} onClick={handleOpen}>{props.label}</p>
@@ -19,7 +22,11 @@ export default function BasicModal(props) {
       >
         <Box className={styles.box}>
           <CloseIcon onClick={handleClose} className={styles.close} variant="large"/>
-          {props.child}
+            {props.text}
+            <div className={styles.buttons}>
+            <button className={styles.buttonDa} onClick={handleConfirm}>Da</button>
+            <button className={styles.buttonNe}onClick={handleClose}>Ne</button>
+            </div>
         </Box>
       </Modal>
     </div>
