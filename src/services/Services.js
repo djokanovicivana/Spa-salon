@@ -203,6 +203,16 @@ const obrisiKorisnika=async({idKorisnika, rola})=>{
     }
 
 }
+const zaposleniSlobodniTermini=async({idZaposlenog,idUsluge})=>{
+    try{
+        const response=await axios.get(`${apiEndpoints.endpointZaposleniSlobodniTermini}.php?idZaposlenog=${idZaposlenog}&idUsluge=${idUsluge}`);
+        return response.data;
+    }
+    catch(error){
+        console.log('error:',error);
+        return error.response.data.poruka;
+    }
+}
 export const Services={
     prijava,
     registracija,
@@ -224,6 +234,7 @@ export const Services={
     zakaziTermin,
     korisniciZakazaniTermini,
     otkaziTermin,
-    obrisiKorisnika
+    obrisiKorisnika,
+    zaposleniSlobodniTermini,
 
 }

@@ -15,6 +15,7 @@ export default function TerminiZaposleniPage(){
       const [usluge,setUsluge]=useState(null);
       const [uslugeIds,setUslugeIds]=useState(null);
       const [zakazaniTermini,setZakazaniTermini]=useState(null);
+      const [slobodniTermini, setSlobodniTermini]=useState(null);
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);
     };
@@ -31,15 +32,21 @@ export default function TerminiZaposleniPage(){
           setUslugeIds(fetchedUslugeIds);
              if (fetchedUslugeIds.length > 0) {
             const terminiResponses = [];
+            const slobodniResponses=[];
             for (const uslugaId of fetchedUslugeIds) {
                 const terminiResponse = await Services.zakazaniTermini({
                     'idZaposlenog': idZaposleni,
                     'idUsluge': uslugaId
                 });
                 terminiResponses.push(terminiResponse);
+                const slobodniResponse=await Services.zaposleniSlobodniTermini({'idZaposlenog':idZaposleni,
+                 'idUsluge':uslugaId});
+                slobodniResponses.push(slobodniResponse);
             }
             console.log(terminiResponses);
+            console.log(slobodniResponses);
             setZakazaniTermini(terminiResponses);
+            setSlobodniTermini(slobodniResponses);
   
         }
       };
@@ -47,6 +54,7 @@ export default function TerminiZaposleniPage(){
     },[idZaposleni]);
    
     console.log(zakazaniTermini);
+    console.log(slobodniTermini);
     console.log(usluge);
     console.log(uslugeIds);
     return (
@@ -70,9 +78,9 @@ export default function TerminiZaposleniPage(){
         </Tabs>
        {tabValue1 === 0 && usluge && uslugeIds && zakazaniTermini && (
     <div>
-        {zakazaniTermini[tabValue].poruka==null && (
+        {zakazaniTermini[tabValue].termini && (
            zakazaniTermini[tabValue].termini.map((termin,index)=>(
-           <div>
+           <div key={index}>
             <p>{termin.FirstName} {termin.LastName}</p>
             <p>{format(new Date(termin.AppointmentDateTime), 'dd.MM.yyyy. HH:mm')}</p>
            </div>
@@ -83,6 +91,20 @@ export default function TerminiZaposleniPage(){
         )}
     </div>
 )}
+       {tabValue1===1 && usluge && uslugeIds && slobodniTermini && (
+        <div>
+           {slobodniTermini[tabValue].termini && (
+           slobodniTermini[tabValue].termini.map((termin,index)=>(
+           <div key={index}>
+            <p>{format(new Date(termin.AppointmentDateTime), 'dd.MM.yyyy. HH:mm')}</p>
+           </div>
+           ))
+        )}
+        {!slobodniTermini[tabValue].termini && (
+          <h3>Nema slobodnih termina</h3>
+        )}
+        </div>
+       )} 
         </>}
         </>
     )
