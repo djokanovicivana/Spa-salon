@@ -1,4 +1,5 @@
 
+import { AutoFixOffTwoTone } from "@mui/icons-material";
 import { apiEndpoints } from "../utils/apiUrls";
 import axios from "axios";
 const prijava=async({korisnickoIme, password})=>{
@@ -213,6 +214,29 @@ const zaposleniSlobodniTermini=async({idZaposlenog,idUsluge})=>{
         return error.response.data.poruka;
     }
 }
+const obrisiTermin=async(idTermina)=>{
+    try{
+        const response=await axios.get(`${apiEndpoints.endpointObrisiTermin}.php?idTermina=${idTermina}`);
+        return response.data.poruka;
+    }
+    catch(error){
+        console.log('error:',error);
+        return error.response.data.poruka;
+    }
+}
+const dodajTermin=async({idZaposlenog, terminDatum, terminSati,idUsluge})=>{
+    try{
+       const response=await axios.post(`${apiEndpoints.endpointDodajTermin}.php?idZaposlenog=${idZaposlenog}`,{
+        'terminDatum':terminDatum,
+        'terminSati':terminSati,
+        'idUsluge':idUsluge
+       });
+       return response.data.poruka;
+    }catch(error){
+        console.log('error:',error);
+        return error.response.data.poruka;
+    }
+}
 export const Services={
     prijava,
     registracija,
@@ -236,5 +260,7 @@ export const Services={
     otkaziTermin,
     obrisiKorisnika,
     zaposleniSlobodniTermini,
+    obrisiTermin,
+    dodajTermin
 
 }

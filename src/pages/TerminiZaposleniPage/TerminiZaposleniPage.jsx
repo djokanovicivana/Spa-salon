@@ -8,6 +8,14 @@ import { useState } from "react";
 import { Services } from "../../services/Services";
 import { useEffect } from "react";
 import { format } from 'date-fns';
+import BasicModal from "../../components/BasicModal/BasicModal";
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import ContainedButton from "../../components/ContainedButton/ContainedButton";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ModalDodavanje from "../../components/ModalDodavanje/ModalDodavanje";
 export default function TerminiZaposleniPage(){
     const idZaposleni=Services.uzimanjeSesijeId();
       const [tabValue, setTabValue] = useState(0);
@@ -22,6 +30,67 @@ export default function TerminiZaposleniPage(){
       const handleTabChange1 = (event, newValue) => {
         setTabValue1(newValue);
     };
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#fb6f92',
+    },
+  },
+  typography: {
+    fontFamily: 'Nunito, sans-serif',
+    fontSize: 25,
+    fontWeight: 'bolder',
+    tab: {
+      color: '#fb6f92',
+    },
+  },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'inherit',
+          borderBottom: '2px solid transparent',
+          textAlign: 'center',
+          '&.Mui-selected': {
+            color: '#fb6f92',
+            borderBottom: '2px solid currentColor',
+            fontWeight:'bolder',
+          },
+        },
+      },
+    },
+
+});
+const theme1 = createTheme({
+  palette: {
+    primary: {
+      main: '#fb6f92',
+    },
+  },
+  typography: {
+    fontFamily: 'Nunito, sans-serif',
+    fontSize: 18,
+    fontWeight: 'bolder',
+    tab: {
+      color: '#fb6f92',
+    },
+  },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'inherit',
+          borderBottom: '2px solid transparent',
+          textAlign: 'center',
+          '&.Mui-selected': {
+            color: '#fb6f92',
+            borderBottom: '2px solid currentColor',
+            fontWeight:'bolder',
+          },
+        },
+      },
+    },
+
+});
+
     useEffect(()=>{
       const fetchData=async()=>{
         const response=await Services.mojeUsluge(idZaposleni);
@@ -64,44 +133,72 @@ export default function TerminiZaposleniPage(){
         text3={<Link to={`/terminiZaposleni/${idZaposleni}`}>Termini</Link>}
         text4={<Link to={`/profilZaposleni/${idZaposleni}`}>Tvoj profil</Link>}
         text5="Odjavi se"/>
+        <ToastContainer/>
+         <ThemeProvider theme={theme}>
+          <div className={styles.tabBox}>
          <Tabs value={tabValue} onChange={handleTabChange} >
         {usluge && usluge.map((usluga,index)=>(
          <Tab label={usluga} key={index}  className={styles.tabs}/>
        
         ))}
         </Tabs>
+        </div>
+         </ThemeProvider>
          {tabValue>=0 &&
         <>
+        
+        <ThemeProvider theme={theme1}>
+        <div className={styles.tabBox}>
         <Tabs value={tabValue1} onChange={handleTabChange1}>
           <Tab label="Zakazani termini"  className={styles.tabs}/>
         <Tab label="Slobodni termini" className={styles.tabs}/>
         </Tabs>
+        </div>
+        </ThemeProvider>
+       
        {tabValue1 === 0 && usluge && uslugeIds && zakazaniTermini && (
     <div>
         {zakazaniTermini[tabValue].termini && (
            zakazaniTermini[tabValue].termini.map((termin,index)=>(
-           <div key={index}>
+           <div key={index} className={styles.zakazaniBox}>
             <p>{termin.FirstName} {termin.LastName}</p>
             <p>{format(new Date(termin.AppointmentDateTime), 'dd.MM.yyyy. HH:mm')}</p>
            </div>
            ))
         )}
         {!zakazaniTermini[tabValue].termini && (
-          <h3>Nema zakazanih termina u narednom periodu</h3>
+          <h3 className={styles.error}>Nema zakazanih termina u narednom periodu!</h3>
         )}
     </div>
 )}
        {tabValue1===1 && usluge && uslugeIds && slobodniTermini && (
         <div>
+          <ModalDodavanje label={<ContainedButton module={styles.button} text={<AddIcon/>}/>} idZaposlenog={idZaposleni} idUsluge={uslugeIds[tabValue]}/>
            {slobodniTermini[tabValue].termini && (
            slobodniTermini[tabValue].termini.map((termin,index)=>(
-           <div key={index}>
+           <div key={index} className={styles.slobodniBox}>
             <p>{format(new Date(termin.AppointmentDateTime), 'dd.MM.yyyy. HH:mm')}</p>
+              <BasicModal label={<ContainedButton module={styles.button} text={<DeleteIcon/>}/>} text={<p className={styles.modalText}>Da li ste sigurni da želite da obrišete termin?</p>} 
+        onConfirm={async()=>{
+        const response=await Services.obrisiTermin(termin.AppointmentID);
+        if(response==='Uspesno obrisan korisnik'){
+         toast.success("Termin je uspešno obrisan!", {
+          position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1500,
+        });
+        }else{
+            toast.error("Došlo je do greške. Pokušajte ponovo!", {
+          position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1500,
+        });
+        }
+        }}
+        />
            </div>
            ))
         )}
         {!slobodniTermini[tabValue].termini && (
-          <h3>Nema slobodnih termina</h3>
+          <h3 className={styles.error}>Nema slobodnih termina!</h3>
         )}
         </div>
        )} 
