@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Services } from "../../services/Services";
 export default function KorisnikProfil(){
-    const idKorisnik=Services.uzimanjeSesije();
+    const idKorisnik=Services.uzimanjeSesijeId();
     const [korisnik,setKorisnik]=useState([]);
     useEffect(()=>{
         const fetchData=async()=>{

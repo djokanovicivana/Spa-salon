@@ -87,13 +87,14 @@ const izmeniKorisnika=async({idKorisnika,ime,prezime,email,brojTelefona,korisnic
         console.log('error:',error);
     }
 }
-const zakazaniTermini=async(idZaposlenog)=>{
+const zakazaniTermini=async({idZaposlenog,idUsluge})=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointZakazaniTermini}?idZaposlenog=${idZaposlenog}.php`);
-        return response.data.termini;
+        const response=await axios.get(`${apiEndpoints.endpointZakazaniTermini}.php?idZaposlenog=${idZaposlenog}&idUsluge=${idUsluge}`);
+        return response.data;
     }
     catch(error){
         console.log('error:',error);
+        return error.response.data.poruka;
     }
 }
 const sveUsluge=async()=>{
@@ -107,7 +108,7 @@ const sveUsluge=async()=>{
 }
 const mojeUsluge=async(idZaposlenog)=>{
 try{
-    const response=await axios.get(`${apiEndpoints.endpointMojeUsluge}?idZaposlenog=${idZaposlenog}.php`);
+    const response=await axios.get(`${apiEndpoints.endpointMojeUsluge}.php?idZaposlenog=${idZaposlenog}`);
     return response.data.usluge;
 }
 catch(error){
@@ -171,12 +172,22 @@ const cuvanjeSesije = ({ idKorisnika, idRole }) => {
 const brisanjeSesije=()=>{
     sessionStorage.clear();
 }
-const uzimanjeSesije = () => {
+const uzimanjeSesijeId = () => {
     const storedData = sessionStorage.getItem('userData');
 
     if (storedData) {
         const userData = JSON.parse(storedData);
         return userData.idKorisnika;
+    }
+
+    return null; 
+}
+const uzimanjeSesijeRola = () => {
+    const storedData = sessionStorage.getItem('userData');
+
+    if (storedData) {
+        const userData = JSON.parse(storedData);
+        return userData.rola;
     }
 
     return null; 
@@ -208,7 +219,8 @@ export const Services={
     korisniciSlobodniTermini,
     cuvanjeSesije,
     brisanjeSesije,
-    uzimanjeSesije,
+    uzimanjeSesijeId,
+    uzimanjeSesijeRola,
     zakaziTermin,
     korisniciZakazaniTermini,
     otkaziTermin,

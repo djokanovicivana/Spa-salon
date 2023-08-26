@@ -5,8 +5,7 @@ import ZaposleniCard from "../../components/ZaposleniCard/ZaposleniCard";
 import AddIcon from '@mui/icons-material/Add';
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import styles from "./SviZaposleniPage.module.css"
-import BasicModal from "../../components/BasicModal/BasicModal";
-import DodavanjeForm from "../../components/DodavanjeForm/DodavanjeForm";
+
 import { Services } from "../../services/Services";
 import { useEffect } from "react";
 import { useState } from "react";

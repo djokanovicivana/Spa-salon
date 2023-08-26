@@ -11,7 +11,7 @@ import BasicModal from "../../components/BasicModal/BasicModal";
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
 export default function TerminiKorisnikPage(){
-    const idKorisnik=Services.uzimanjeSesije();
+    const idKorisnik=Services.uzimanjeSesijeId();
     const [termini,setTermini]=useState([]);
     useEffect(()=>{
         const fetchData=async()=>{
