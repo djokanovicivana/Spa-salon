@@ -86,8 +86,8 @@ export default function TerminiZaposleniPage(){
            </div>
            ))
         )}
-        {zakazaniTermini[tabValue].poruka && (
-          <h3>{zakazaniTermini[tabValue].poruka}</h3>
+        {!zakazaniTermini[tabValue].termini && (
+          <h3>Nema zakazanih termina u narednom periodu</h3>
         )}
     </div>
 )}
