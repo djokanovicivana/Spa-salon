@@ -11,7 +11,7 @@ require_once("db.php");
 
 $metoda = $_SERVER['REQUEST_METHOD'];
 
-if($metoda == 'DELETE' && isset($_GET['idTermina']))
+if($metoda == 'GET' && isset($_GET['idTermina']))
 //if($metoda == 'GET' && isset($_GET['idTermina']))
 {
     //idTermina preko url-a

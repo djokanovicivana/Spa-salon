@@ -10,7 +10,7 @@ require_once("db.php");
 
 $greska = 0;
 
-if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && !empty($_GET['idKorisnika']) && !empty($_GET['rola'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET['idKorisnika']) && !empty($_GET['rola'])) {
 
   $idKorisnika = $_GET['idKorisnika'];  
   //poslati rolu sa fronta
