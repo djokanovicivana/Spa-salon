@@ -9,7 +9,7 @@ export default function UslugaThumbnail(props){
     return (
         <div className={styles.thumbnail} onClick={handleThumbnailClick}>
         <div className={styles.imageDiv}>
-            <img className={styles.image} src={require(`../../images/background.jpg`)}/>
+            <img className={styles.image} src={require(`../../images/thumbnail.jpg`)}/>
         </div>
         <div className={styles.label}>
             <h1 className={styles.heading}>{props.nazivUsluge}</h1>

@@ -24,11 +24,12 @@ export default function UslugePage(){
         text3={<Link to="/prijava">Prijavi se</Link>}
         text4={<Link to="/registracija">Registruj se</Link>}
         />
+        <div className={styles.page}>
         {usluge && <div className={styles.uslugeGrid}>
             {usluge.map((usluga,index)=>(
                 <UslugaThumbnail key={index} nazivUsluge={usluga.ServiceName} cenaUsluge={usluga.ServicePrice} idUsluge={usluga.ServiceID}/>))}
             </div>}
-        
+        </div>
         </>
     )
 }

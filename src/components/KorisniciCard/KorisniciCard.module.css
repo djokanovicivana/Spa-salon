@@ -2,7 +2,8 @@
     background-color: white;
     color: #fb6f92;
     font-size: 20px;
-    width: 80vw;
+    min-width: max-content;
+    max-width: 80vw;
     margin-left: 10vw;
     border-radius: 20px;
     box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);

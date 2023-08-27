@@ -7,8 +7,8 @@ body {
     font-family: 'Nunito Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: url("./images/background.jpg");
-    background-repeat: no-repeat;
+    background: url("./images/background2.jpg");
+    background-repeat: repeat-y;
     background-size: cover;
 }
 

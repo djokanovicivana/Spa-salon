@@ -29,6 +29,7 @@ export default function SviZaposleniPage(){
         text3={<Link to="/korisniciAdmin">Korisnici</Link>}
         text4={<Link to="/profilAdmin">Tvoj profil</Link>}
         text5="Odjavi se"/>
+        <div className={styles.page}>
         <div  className={styles.heading}>
         <h1>Svi zaposleni</h1>
         <Link to={`/dodavanjeZaposlenog`}><ContainedButton module={styles.button} text={<AddIcon/>}/></Link>
@@ -41,6 +42,7 @@ export default function SviZaposleniPage(){
         </div>
         ))}
         </div>}
+        </div>
         </>
         
     )
