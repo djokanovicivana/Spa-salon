@@ -21,38 +21,89 @@ import TerminiKorisnikPage from './pages/TerminiKorisnikPage/TerminiKorisnikPage
 import OpisUsluge from './pages/OpisUsluge/OpisUsluge';
 
 function App() {
-  return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<HomePage/>}/>
-      <Route path="/prijava" element={<PrijavaPage/>}/> 
-      <Route path="/registracija" element={<RegistracijaPage/>}/>
-      <Route path="/admin/:idAdmin" element={<AdminPage/>}/>
-      <Route path="/profilZaposleni/:idZaposleni" element={<ZaposleniProfil/>}/>
-      <Route path="/korisniciAdmin/:idAdmin" element={<SviKorisniciPage/>}/>
-      <Route path="/zaposleniAdmin/:idAdmin" element={<SviZaposleniPage/>}/>
-      <Route path="/usluge" element={<UslugePage/>}/>
-      <Route path="/zaposleni/:idZaposleni" element={<ZaposleniPage/>}/>
-      <Route path="/terminiZaposleni/:idZaposleni" element={<TerminiZaposleniPage/>}/>
-      <Route path="/terminiKorisnik/:idKorisnik" element={<TerminiKorisnikPage/>}/>
-      <Route path="/korisnik/:idKorisnik" element={<KorisnikPage/>}/>
-      <Route path="/profilKorisnik/:idKorisnik" element={<KorisnikProfil/>}/>
-      <Route path="/profilAdmin/:idAdmin" element={<AdminProfil/>}/>
-      <Route path="/azuriranjePodatakaAdmin/:idAdmin" element={<IzmenaForm uloga="Administrator"/>}/>
-      <Route path="/azuriranjePodatakaZaposleni/:idZaposleni" element={<IzmenaForm uloga="Zaposleni"/>}/>
-      <Route path="/azuriranjePodatakaKorisnik/:idKorisnik" element={<IzmenaForm uloga="Korisnik"/>}/>
-      <Route path="/izmenaKorisnika/:idKorisnik/:idAdmin" element={<IzmenaAdmin/>}/>
-      <Route path="/izmenaZaposlenog/:idZaposleni/:idAdmin" element={<IzmenaAdmin/>}/>
-      <Route path="/dodavanjeKorisnika/:idAdmin" element={<DodavanjeForm uloga="Korisnik" heading="Dodaj korisnika:"/>}/>
-      <Route path="/dodavanjeZaposlenog/:idAdmin" element={<DodavanjeForm uloga="Zaposleni" heading="Dodaj zaposlenog:"/>}/>
-      <Route path="/zakazivanjeTermina/:idKorisnik" element={<ZakazivanjeTerminaPage/>}/>
-       <Route path="/opisUsluge/:idUsluge" element={<OpisUsluge/>}/>
-      
-      
+    return ( <
+        BrowserRouter >
+        <
+        Routes >
+        <
+        Route path = "/"
+        element = { < HomePage / > }
+        /> <
+        Route path = "/prijava"
+        element = { < PrijavaPage / > }
+        />  <
+        Route path = "/registracija"
+        element = { < RegistracijaPage / > }
+        /> <
+        Route path = "/admin/:idAdmin"
+        element = { < AdminPage / > }
+        /> <
+        Route path = "/profilZaposleni/:idZaposleni"
+        element = { < ZaposleniProfil / > }
+        /> <
+        Route path = "/korisniciAdmin/:idAdmin"
+        element = { < SviKorisniciPage / > }
+        /> <
+        Route path = "/zaposleniAdmin/:idAdmin"
+        element = { < SviZaposleniPage / > }
+        /> <
+        Route path = "/usluge"
+        element = { < UslugePage / > }
+        /> <
+        Route path = "/zaposleni/:idZaposleni"
+        element = { < ZaposleniPage / > }
+        /> <
+        Route path = "/terminiZaposleni/:idZaposleni"
+        element = { < TerminiZaposleniPage / > }
+        /> <
+        Route path = "/terminiKorisnik/:idKorisnik"
+        element = { < TerminiKorisnikPage / > }
+        /> <
+        Route path = "/korisnik/:idKorisnik"
+        element = { < KorisnikPage / > }
+        /> <
+        Route path = "/profilKorisnik/:idKorisnik"
+        element = { < KorisnikProfil / > }
+        /> <
+        Route path = "/profilAdmin/:idAdmin"
+        element = { < AdminProfil / > }
+        /> <
+        Route path = "/azuriranjePodatakaAdmin/:idAdmin"
+        element = { < IzmenaForm uloga = "Administrator" / > }
+        /> <
+        Route path = "/azuriranjePodatakaZaposleni/:idZaposleni"
+        element = { < IzmenaForm uloga = "Zaposleni" / > }
+        /> <
+        Route path = "/azuriranjePodatakaKorisnik/:idKorisnik"
+        element = { < IzmenaForm uloga = "Korisnik" / > }
+        /> <
+        Route path = "/izmenaKorisnika/:idKorisnik/:idAdmin"
+        element = { < IzmenaAdmin / > }
+        /> <
+        Route path = "/izmenaZaposlenog/:idZaposleni/:idAdmin"
+        element = { < IzmenaAdmin / > }
+        /> <
+        Route path = "/dodavanjeKorisnika/:idAdmin"
+        element = { < DodavanjeForm uloga = "Korisnik"
+            heading = "Dodaj korisnika:" / > }
+        /> <
+        Route path = "/dodavanjeZaposlenog/:idAdmin"
+        element = { < DodavanjeForm uloga = "Zaposleni"
+            heading = "Dodaj zaposlenog:" / > }
+        /> <
+        Route path = "/zakazivanjeTermina/:idKorisnik"
+        element = { < ZakazivanjeTerminaPage / > }
+        /> <
+        Route path = "/opisUsluge/:idUsluge"
+        element = { < OpisUsluge / > }
+        />
 
-        
-        </Routes>
-        </BrowserRouter>
+
+
+
+        <
+        /Routes> <
+        /BrowserRouter>
     );
 }
 

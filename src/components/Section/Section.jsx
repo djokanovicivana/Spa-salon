@@ -3,7 +3,8 @@ import Fade from 'react-reveal/Fade';
 import styled from 'styled-components';
 import './Section.css';
 
-function Section({ title, description, image, leftbtn, rightbtn }) {
+function Section({ title, description, image, leftbtn, rightbtn,pageType }) {
+    const showButtons = pageType !== 'zaposleni'  && pageType !== 'korisnik';
     return (
         <Wrap bgImage={image}>
             <Fade bottom>
@@ -14,10 +15,14 @@ function Section({ title, description, image, leftbtn, rightbtn }) {
             </Fade>
             <Buttons>
                 <Fade bottom>
-                    <ButtonGroup>
-                        <LeftButton>{leftbtn}</LeftButton>
-                        {rightbtn && <RightButton>{rightbtn}</RightButton>}
-                    </ButtonGroup>
+                <ButtonGroup>
+    {showButtons && (
+        <>
+            <LeftButton>{leftbtn}</LeftButton>
+            {rightbtn && <RightButton>{rightbtn}</RightButton>}
+        </>
+    )}
+</ButtonGroup>
                 </Fade>
                 <DownArrow src="/images/down-arrow.svg" />
             </Buttons>
