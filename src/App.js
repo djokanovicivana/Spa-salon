@@ -19,7 +19,6 @@ import DodavanjeForm from './components/DodavanjeForm/DodavanjeForm';
 import ZakazivanjeTerminaPage from './pages/ZakazivanjeTerminaPage/ZakazivanjeTerminaPage';
 import TerminiKorisnikPage from './pages/TerminiKorisnikPage/TerminiKorisnikPage';
 import OpisUsluge from './pages/OpisUsluge/OpisUsluge';
-import KorisnikTermini from './pages/KorisnikTermini/KorisnikTermini';
 
 function App() {
     return ( <
@@ -86,30 +85,25 @@ function App() {
         /> <
         Route path = "/dodavanjeKorisnika/:idAdmin"
         element = { < DodavanjeForm uloga = "Korisnik"
-            heading = "Dodaj korisnika:" / >
-        }
+            heading = "Dodaj korisnika:" / > }
         /> <
         Route path = "/dodavanjeZaposlenog/:idAdmin"
         element = { < DodavanjeForm uloga = "Zaposleni"
-            heading = "Dodaj zaposlenog:" / >
-        }
+            heading = "Dodaj zaposlenog:" / > }
         /> <
         Route path = "/zakazivanjeTermina/:idKorisnik"
         element = { < ZakazivanjeTerminaPage / > }
         /> <
         Route path = "/opisUsluge/:idUsluge"
         element = { < OpisUsluge / > }
-        /> <
-        Route path = "/KorisnikTermini/"
-        element = { < KorisnikTermini / > }
         />
 
 
 
 
         <
-        /Routes> < /
-        BrowserRouter >
+        /Routes> <
+        /BrowserRouter>
     );
 }
 
