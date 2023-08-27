@@ -11,14 +11,17 @@ import { Services } from '../../services/Services';
 import { Controller, useForm } from 'react-hook-form';
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
+import { format } from 'date-fns'; 
 export default function ModalDodavanje(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const {handleSubmit, control}=useForm();
   const onSubmit=async(data)=>{
+     const formattedDate = format(data.datumVreme.$d, 'yy-MM-dd HH:mm:ss');
+     console.log(formattedDate);
      const response=await Services.dodajTermin({'idZaposlenog':props.idZaposlenog,
-     'termin':data.datumVreme.$d,
+     'termin':formattedDate,
      'idUsluge':props.idUsluge
   });
   if(response==='Termin uspešno dodat.'){

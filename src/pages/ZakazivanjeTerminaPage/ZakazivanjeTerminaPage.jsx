@@ -14,7 +14,8 @@ import BasicModal from "../../components/BasicModal/BasicModal";
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from "./ZakazivanjeTerminaPage.module.css";
 export default function ZakazivanjeTerminaPage(){
-    const idKorisnik=Services.uzimanjeSesije();
+    const idKorisnik=Services.uzimanjeSesijeId();
+    const rola=Services.uzimanjeSesijeRola();
     const [usluge,setUsluge]=useState([]);
     const { control, handleSubmit, formState: { errors } } = useForm();
     const [termini, setTermini]=useState(null);
@@ -59,10 +60,11 @@ if (selectedUsluga) {
     return(
         <>
         <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to={`/zakazivanjeTermina/${idKorisnik}`}>Zakaži termin</Link>}
-        text3={<Link to={`/terminiKorisnik/${idKorisnik}`}>Termini</Link>}
-        text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/zakazivanjeTermina">Zakaži termin</Link>}
+        text3={<Link to="/terminiKorisnik">Termini</Link>}
+        text4={<Link to="/profilKorisnik">Tvoj profil</Link>}
         text5="Odjavi se"/>
            {usluge && <form method="get" onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.searchBox}>

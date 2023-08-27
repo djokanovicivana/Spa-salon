@@ -22,6 +22,10 @@ a:-webkit-any-link:hover {
     margin-top: 4vh;
     font-size: 25px;
 }
+.logo:hover{
+    color: #fb6f92;
+    cursor: pointer;
+}
 
 .options {
     margin-right: 1vw;

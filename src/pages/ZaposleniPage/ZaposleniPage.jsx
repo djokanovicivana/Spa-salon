@@ -7,13 +7,14 @@ import Section from '../../components/Section/Section';
 import styled from 'styled-components';
 
 export default function ZaposleniPage(){
-    const idZaposleni=Services.uzimanjeSesijeId();
+    const rola=Services.uzimanjeSesijeRola();
     return(
         <>
        <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text3={<Link to={`/terminiZaposleni/${idZaposleni}`}>Termini</Link>}
-        text4={<Link to={`/profilZaposleni/${idZaposleni}`}>Tvoj profil</Link>}
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text3={<Link to="/terminiZaposleni">Termini</Link>}
+        text4={<Link to="/profilZaposleni">Tvoj profil</Link>}
         text5="Odjavi se"/>
         <Container>
     

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Services } from "../../services/Services";
 export default function KorisnikProfil(){
     const idKorisnik=Services.uzimanjeSesijeId();
+    const rola=Services.uzimanjeSesijeRola();
     const [korisnik,setKorisnik]=useState([]);
     useEffect(()=>{
         const fetchData=async()=>{
@@ -17,11 +18,12 @@ export default function KorisnikProfil(){
     },[idKorisnik]);
     return(
         <>
-        <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to={`/zakazivanjeTermina/${idKorisnik}`}>Zakaži termin</Link>}
-        text3={<Link to={`/terminiKorisnik/${idKorisnik}`}>Termini</Link>}
-        text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+         <Navbar
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/zakazivanjeTermina">Zakaži termin</Link>}
+        text3={<Link to="/terminiKorisnik">Termini</Link>}
+        text4={<Link to="/profilKorisnik">Tvoj profil</Link>}
         text5="Odjavi se"/>
         {korisnik &&
         <Profil ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber} link={`/azuriranjePodatakaKorisnik/${idKorisnik}`}/>}

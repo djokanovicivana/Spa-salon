@@ -18,14 +18,12 @@ export default function UslugePage(){
     },[]);
     return(
         <>
-        <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text1="O nama"
+       <Navbar
+        logo="KOZMETIČKI SALON"
         text2={<Link to="/usluge">Usluge</Link>}
-        text3="Cenovnik"
-        text4={<Link to="/prijava">Prijavi se</Link>}
-        text5={<Link to="/registracija">Registruj se</Link>}
-        className={styles.navbar}/>
+        text3={<Link to="/prijava">Prijavi se</Link>}
+        text4={<Link to="/registracija">Registruj se</Link>}
+        />
         {usluge && <div className={styles.uslugeGrid}>
             {usluge.map((usluga,index)=>(
                 <UslugaThumbnail key={index} nazivUsluge={usluga.ServiceName} cenaUsluge={usluga.ServicePrice} idUsluge={usluga.ServiceID}/>))}

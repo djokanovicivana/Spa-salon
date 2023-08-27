@@ -8,7 +8,7 @@ const prijava=async({korisnickoIme, password})=>{
         return response.data;
     } catch (error) {
         console.error("Greška pri prijavljivanju:", error);
-        return null;
+        return error.response.data.poruka;
     } 
 };
 const registracija=async({ime,prezime,brojTelefona,email,korisnickoIme,password,password_confirmation})=>{
@@ -18,7 +18,7 @@ const registracija=async({ime,prezime,brojTelefona,email,korisnickoIme,password,
     }
     catch (error) {
         console.error("Greška pri registrovanju:", error);
-        return null;
+        return error.response.data.poruka;
     }
 }
 const dodajKorisnika=async({ime,prezime,brojTelefona,email,korisnickoIme,password,rola,usluga})=>{
@@ -188,7 +188,7 @@ const uzimanjeSesijeRola = () => {
 
     if (storedData) {
         const userData = JSON.parse(storedData);
-        return userData.rola;
+        return userData.idRole;
     }
 
     return null; 

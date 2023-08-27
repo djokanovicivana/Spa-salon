@@ -1,20 +1,20 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
-import { Services } from "../../services/Services";
 import Footer from "../../components/Footer/Footer";
 import Section from '../../components/Section/Section';
 import styled from 'styled-components';
-
+import { Services } from "../../services/Services";
 export default function ZaposleniPage(){
-    const idKorisnik=Services.uzimanjeSesijeId();
+    const rola=Services.uzimanjeSesijeRola();
     return(
         <>
        <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to={`/zakazivanjeTermina/${idKorisnik}`}>Zakaži termin</Link>}
-        text3={<Link to={`/terminiKorisnik/${idKorisnik}`}>Termini</Link>}
-        text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/zakazivanjeTermina">Zakaži termin</Link>}
+        text3={<Link to="/terminiKorisnik">Termini</Link>}
+        text4={<Link to="/profilKorisnik">Tvoj profil</Link>}
         text5="Odjavi se"/>
         <Container>
          <Section

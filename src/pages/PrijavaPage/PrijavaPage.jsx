@@ -21,13 +21,13 @@ console.log(response);
     console.log(response.autorizovan);
     console.log(response.rola);
     if(response.rola==1){
-        navigate(`/admin/${response.autorizovan}`);  
+        navigate("/admin");  
     }
     else if(response.rola==2){
-        navigate(`/zaposleni/${response.autorizovan}`);  
+        navigate("/zaposleni");  
     }
     else if(response.rola==3){
-         navigate(`/korisnik/${response.autorizovan}`); 
+         navigate("/korisnik"); 
     }
    }else{
 toast.error("Korisničko ime ili lozinka su pogrešni! Pokušajte ponovo!", {
@@ -39,13 +39,12 @@ toast.error("Korisničko ime ili lozinka su pogrešni! Pokušajte ponovo!", {
    
     return(
         <>
-     <Navbar 
-    logo={<Link to="/">KOZMETIČKI SALON</Link>}
-    text1="O nama"
-    text2="Usluge"
-    text3="Cenovnik" 
-    text4={<Link to="/prijava">Prijavi se</Link>}
-    text5={<Link to="/registracija">Registruj se</Link>}/>
+    <Navbar
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/usluge">Usluge</Link>}
+        text3={<Link to="/prijava">Prijavi se</Link>}
+        text4={<Link to="/registracija">Registruj se</Link>}
+        />
     <ToastContainer/>
   <div className={styles.parent}>
         <div className={styles.form}>

@@ -3,7 +3,7 @@
     margin-right: 10vw;
     background: white;
     border-radius: 25px;
-    min-width: 200px;
+    min-width: max-content;
     max-width: 400px;
     min-height: 380px;
     margin-top: 10vh;

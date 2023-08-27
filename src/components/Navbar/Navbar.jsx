@@ -8,9 +8,20 @@ export default function Navbar(props){
         Services.brisanjeSesije();
         navigate("/prijava");
     }
+    const handleLogoClick=()=>{
+        if(props.pocetna==1){
+            navigate("/admin");
+        }else if(props.pocetna==2){
+            navigate("/zaposleni");
+        }else if(props.pocetna==3){
+            navigate("/korisnik");
+        }else{
+            navigate("/");
+        }
+    }
     return(
         <div className={styles.navbar}> 
-        <p className={styles.logo}>{props.logo}</p>
+        <p className={styles.logo} onClick={handleLogoClick}>{props.logo}</p>
         <p className={styles.options}>{props.text1}</p>
         <p className={styles.options}>{props.text2}</p>
         <p className={styles.options}>{props.text3}</p>

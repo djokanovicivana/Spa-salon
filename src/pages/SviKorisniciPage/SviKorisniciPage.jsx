@@ -5,14 +5,12 @@ import KorisniciCard from "../../components/KorisniciCard/KorisniciCard";
 import AddIcon from '@mui/icons-material/Add';
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import styles from "./SviKorisniciPage.module.css"
-import BasicModal from "../../components/BasicModal/BasicModal";
-import DodavanjeForm from "../../components/DodavanjeForm/DodavanjeForm";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Services } from "../../services/Services";
-import { useParams } from "react-router-dom";
 export default function SviKorisniciPage(){
-    const {idAdmin}=useParams();
+    const idAdmin=Services.uzimanjeSesijeId();
+    const rola=Services.uzimanjeSesijeRola();
     const [korisnici,setKorisnici]=useState([]);
     useEffect(()=>{
         const fetchData=async()=>{
@@ -23,11 +21,12 @@ export default function SviKorisniciPage(){
     },[korisnici]);
     return(
         <>
-         <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to={`/zaposleniAdmin/${idAdmin}`}>Zaposleni</Link>}
-        text3={<Link to={`/korisniciAdmin/${idAdmin}`}>Korisnici</Link>}
-        text4={<Link to={`/profilAdmin/${idAdmin}`}>Tvoj profil</Link>}
+        <Navbar
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/zaposleniAdmin">Zaposleni</Link>}
+        text3={<Link to="/korisniciAdmin">Korisnici</Link>}
+        text4={<Link to="/profilAdmin">Tvoj profil</Link>}
         text5="Odjavi se"/>
         <div  className={styles.heading}>
         <h1>Svi korisnici</h1>

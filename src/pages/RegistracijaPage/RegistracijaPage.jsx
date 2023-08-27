@@ -7,10 +7,11 @@ import { useForm } from 'react-hook-form';
 import Navbar from "../../components/Navbar/Navbar";
 import { Services } from "../../services/Services";
 import { toast, ToastContainer } from "react-toastify"; 
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css"; 
 export default function RegistracijaPage(){
     const { register, handleSubmit, formState: { errors }} = useForm();
-
+    const navigate=useNavigate();
     const onSubmit=async(data)=>{
     const response=await Services.registracija({'ime':data.ime,
     'prezime':data.prezime,
@@ -20,17 +21,30 @@ export default function RegistracijaPage(){
 'password':data.password,
 'password_confirmation':data.password_confirmation
 });
-console.log(response);
+if(response==='Registracija uspešna.'){
+      toast.success("Uspešno ste se registrovali!", {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1500,
+        });
+        setTimeout(() => {
+        navigate("/prijava");
+     }, 2000);  
+}else{
+    toast.error(response, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 1500,
+        });
+}
     }
     return (
         <>
-            <Navbar
-                logo={<Link to="/">KOZMETIČKI SALON</Link>}
-                text1="O nama"
-                text2="Usluge"
-                text3="Cenovnik"
-                text4={<Link to="/prijava">Prijavi se</Link>}
-                text5={<Link to="/registracija">Registruj se</Link>} />
+        <Navbar
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/usluge">Usluge</Link>}
+        text3={<Link to="/prijava">Prijavi se</Link>}
+        text4={<Link to="/registracija">Registruj se</Link>}
+        />
+        <ToastContainer/>
                     <form onSubmit={handleSubmit(onSubmit)} method="post" className={styles.form}>
                     <div className={styles.row1}>
                         <h1 className={styles.heading}>Registruj se</h1>

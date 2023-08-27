@@ -20,12 +20,11 @@ export default function HomePage(){
     return(
         <>
         <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text1="O nama"
+        logo="KOZMETIČKI SALON"
         text2={<Link to="/usluge">Usluge</Link>}
-        text3="Cenovnik"
-        text4={<Link to="/prijava">Prijavi se</Link>}
-        text5={<Link to="/registracija">Registruj se</Link>}/>
+        text3={<Link to="/prijava">Prijavi se</Link>}
+        text4={<Link to="/registracija">Registruj se</Link>}
+        />
 
 <Container>
     

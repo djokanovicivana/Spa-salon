@@ -35,37 +35,37 @@ function App() {
         Route path = "/registracija"
         element = { < RegistracijaPage / > }
         /> <
-        Route path = "/admin/:idAdmin"
+        Route path = "/admin"
         element = { < AdminPage / > }
         /> <
-        Route path = "/profilZaposleni/:idZaposleni"
+        Route path = "/profilZaposleni"
         element = { < ZaposleniProfil / > }
         /> <
-        Route path = "/korisniciAdmin/:idAdmin"
+        Route path = "/korisniciAdmin"
         element = { < SviKorisniciPage / > }
         /> <
-        Route path = "/zaposleniAdmin/:idAdmin"
+        Route path = "/zaposleniAdmin"
         element = { < SviZaposleniPage / > }
         /> <
         Route path = "/usluge"
         element = { < UslugePage / > }
         /> <
-        Route path = "/zaposleni/:idZaposleni"
+        Route path = "/zaposleni"
         element = { < ZaposleniPage / > }
         /> <
-        Route path = "/terminiZaposleni/:idZaposleni"
+        Route path = "/terminiZaposleni"
         element = { < TerminiZaposleniPage / > }
         /> <
-        Route path = "/terminiKorisnik/:idKorisnik"
+        Route path = "/terminiKorisnik"
         element = { < TerminiKorisnikPage / > }
         /> <
-        Route path = "/korisnik/:idKorisnik"
+        Route path = "/korisnik"
         element = { < KorisnikPage / > }
         /> <
-        Route path = "/profilKorisnik/:idKorisnik"
+        Route path = "/profilKorisnik"
         element = { < KorisnikProfil / > }
         /> <
-        Route path = "/profilAdmin/:idAdmin"
+        Route path = "/profilAdmin"
         element = { < AdminProfil / > }
         /> <
         Route path = "/azuriranjePodatakaAdmin/:idAdmin"
@@ -91,7 +91,7 @@ function App() {
         element = { < DodavanjeForm uloga = "Zaposleni"
             heading = "Dodaj zaposlenog:" / > }
         /> <
-        Route path = "/zakazivanjeTermina/:idKorisnik"
+        Route path = "/zakazivanjeTermina"
         element = { < ZakazivanjeTerminaPage / > }
         /> <
         Route path = "/opisUsluge/:idUsluge"
@@ -101,9 +101,8 @@ function App() {
 
 
 
-        <
-        /Routes> <
-        /BrowserRouter>
+        </Routes> 
+        </BrowserRouter>
     );
 }
 

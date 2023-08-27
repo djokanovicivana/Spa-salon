@@ -18,6 +18,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ModalDodavanje from "../../components/ModalDodavanje/ModalDodavanje";
 export default function TerminiZaposleniPage(){
     const idZaposleni=Services.uzimanjeSesijeId();
+    const rola=Services.uzimanjeSesijeRola();
       const [tabValue, setTabValue] = useState(0);
       const [tabValue1, setTabValue1] = useState(0);
       const [usluge,setUsluge]=useState(null);
@@ -120,7 +121,7 @@ const theme1 = createTheme({
         }
       };
       fetchData();
-    },[slobodniTermini,zakazaniTermini]);
+    },[idZaposleni]);
    
     console.log(zakazaniTermini);
     console.log(slobodniTermini);
@@ -129,9 +130,10 @@ const theme1 = createTheme({
     return (
         <>
        <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text3={<Link to={`/terminiZaposleni/${idZaposleni}`}>Termini</Link>}
-        text4={<Link to={`/profilZaposleni/${idZaposleni}`}>Tvoj profil</Link>}
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text3={<Link to="/terminiZaposleni">Termini</Link>}
+        text4={<Link to="/profilZaposleni">Tvoj profil</Link>}
         text5="Odjavi se"/>
         <ToastContainer/>
          <ThemeProvider theme={theme}>

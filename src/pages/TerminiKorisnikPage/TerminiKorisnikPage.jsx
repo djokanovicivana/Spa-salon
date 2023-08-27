@@ -12,6 +12,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
 export default function TerminiKorisnikPage(){
     const idKorisnik=Services.uzimanjeSesijeId();
+    const rola=Services.uzimanjeSesijeRola();
     const [termini,setTermini]=useState([]);
     useEffect(()=>{
         const fetchData=async()=>{
@@ -24,10 +25,11 @@ export default function TerminiKorisnikPage(){
     return(
         <>
          <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to={`/zakazivanjeTermina/${idKorisnik}`}>Zakaži termin</Link>}
-        text3={<Link to={`/terminiKorisnik/${idKorisnik}`}>Termini</Link>}
-        text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/zakazivanjeTermina">Zakaži termin</Link>}
+        text3={<Link to="/terminiKorisnik">Termini</Link>}
+        text4={<Link to="/profilKorisnik">Tvoj profil</Link>}
         text5="Odjavi se"/>
         <ToastContainer/>
         <h1 className={styles.heading}>Tvoji zakazani termini:</h1>
