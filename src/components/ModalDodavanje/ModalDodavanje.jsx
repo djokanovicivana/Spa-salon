@@ -7,11 +7,11 @@ import ContainedButton from '../ContainedButton/ContainedButton';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { format } from 'date-fns'; 
 import { Services } from '../../services/Services';
 import { Controller, useForm } from 'react-hook-form';
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
-import { format } from 'date-fns'; 
 export default function ModalDodavanje(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -61,6 +61,7 @@ export default function ModalDodavanje(props) {
             <p className={styles.label}>Izaberi vreme termina:</p>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateTimePicker
+              disablePast  
               className={styles.picker}
                 value={field.value}
                 onChange={(value) => field.onChange(value)}

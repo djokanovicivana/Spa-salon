@@ -8,14 +8,17 @@ import { Services } from "../../services/Services";
 import { useEffect } from "react";
 import { useState } from "react";
 import ContainedButton from "../../components/ContainedButton/ContainedButton";
-import DatePicker from 'react-datepicker';
 import SearchIcon from '@mui/icons-material/Search';
 import BasicModal from "../../components/BasicModal/BasicModal";
-import 'react-datepicker/dist/react-datepicker.css';
 import styles from "./ZakazivanjeTerminaPage.module.css";
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useNavigate } from "react-router-dom";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { format } from 'date-fns'; 
+import { dateTimePickerTabsClasses } from "@mui/x-date-pickers";
 export default function ZakazivanjeTerminaPage(){
     const idKorisnik=Services.uzimanjeSesijeId();
     const rola=Services.uzimanjeSesijeRola();
@@ -36,14 +39,15 @@ export default function ZakazivanjeTerminaPage(){
         setTermini(null);
     const nazivUsluge = data.usluga;
 const selectedUsluga = usluge.find((usluga) => usluga.ServiceName === nazivUsluge);
+const dateObject = new Date(data.datum.$d);
+const formattedDate = format(dateObject, 'yy-MM-dd');
+console.log(formattedDate);
 
 if (selectedUsluga) {
     const selectedUslugaId = selectedUsluga.ServiceID;
-    console.log(selectedUslugaId);
-    console.log(data.datum);
     const response=await Services.korisniciSlobodniTermini({
         'idUsluge':selectedUslugaId,
-        'datum':data.datum,
+        'datum':formattedDate,
     });
     
     if(response!=='Nema slobodnih termina za Vašu pretragu'){
@@ -96,18 +100,26 @@ if (selectedUsluga) {
               )}
             />
             
-            <Controller
-      name="datum"
-      control={control}
-      defaultValue={null}
-      render={({ field }) => (
-       <div className={styles.item}>
-        <p className={styles.label}>Izaberi datum:</p>
-        <DatePicker selected={field.value} onChange={date => field.onChange(date)} 
-        className={styles.datePicker} />
-        </div>
-      )}
-    />
+             <Controller
+        name="datum"
+        control={control}
+        defaultValue={null}
+        render={({ field }) => (
+          <div className={styles.item}>
+            <p className={styles.label}>Izaberi datum:</p>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+              disablePast  
+              className={styles.picker}
+                value={field.value}
+                onChange={(value) => field.onChange(value)}
+              />
+            </LocalizationProvider>
+          </div>
+        )}
+
+      />
+
     <div className={styles.item}>
           <ContainedButton text={<SearchIcon/>} type="submit" module={styles.button}/>
           </div>
