@@ -32,6 +32,7 @@ console.log(response);
    }else{
 toast.error("Korisničko ime ili lozinka su pogrešni! Pokušajte ponovo!", {
           position: toast.POSITION.TOP_RIGHT,
+          autoClose:1500,
         });
    }
 }

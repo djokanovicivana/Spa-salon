@@ -30,7 +30,7 @@ export default function AdminProfil(){
         text4={<Link to="/profilAdmin">Tvoj profil</Link>}
         text5="Odjavi se"/>
         {korisnik &&
-        <Profil idKorisnik={idAdmin} ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber} link={`/azuriranjePodatakaAdmin/${idAdmin}`}/>
+        <Profil idKorisnik={idAdmin} ime={korisnik.FirstName} prezime={korisnik.LastName} korisnickoIme={korisnik.Username} email={korisnik.email} brojTelefona={korisnik.PhoneNumber} link={`/azuriranjePodatakaAdmin`}/>
 }
         </>
     )

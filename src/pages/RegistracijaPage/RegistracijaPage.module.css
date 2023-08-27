@@ -1,28 +1,22 @@
-
+.box{
+        margin-top: 10vh;
+            margin: auto;
+            background: white;
+            border-radius: 25px;
+            min-width: fit-content;
+            max-width: 55vw;
+            height: fit-content;
+            margin-top: 9vh;
+            box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
+            padding:1%;
+}
 .form{
     display:flex;
     flex-wrap: wrap;
-    margin-top: 10vh;
-    margin:auto;
-    background: white;
-    border-radius: 25px;
-    width: 50vw;
-    min-height: 70vh;
-    margin-top: 9vh;
-    box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 14px -1px rgba(0, 0, 0, 0.75);
-}
-
-.row1 {
-    margin-right: 50px;
-    margin-bottom: 0;
-
-}
-
-.row2 {
-    margin-right: 100px;
-    margin-top:16vh;
+    justify-content: center;
+    gap:3vw;
 }
 
 h1 {
@@ -59,6 +53,7 @@ h1:before {
     cursor: pointer;
 }
 .heading{
-    font-size: 30px;
-    margin-left: 0;
+    font-size: 2em;
+    text-align: center;
+    
 }

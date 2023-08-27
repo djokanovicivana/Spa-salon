@@ -30,7 +30,7 @@ export default function SviKorisniciPage(){
         text5="Odjavi se"/>
         <div  className={styles.heading}>
         <h1>Svi korisnici</h1>
-        <Link to={`/dodavanjeKorisnika/${idAdmin}`}><ContainedButton module={styles.button} text={<AddIcon/>}/></Link>
+        <Link to={`/dodavanjeKorisnika`}><ContainedButton module={styles.button} text={<AddIcon/>}/></Link>
         </div>
         {korisnici && <div>
         {korisnici.map((korisnik,index)=>(

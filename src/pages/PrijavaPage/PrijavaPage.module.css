@@ -1,6 +1,5 @@
 .form {
-    margin-left: 34vw;
-    margin-right: 10vw;
+    margin:auto;
     background: white;
     border-radius: 25px;
     min-width: max-content;

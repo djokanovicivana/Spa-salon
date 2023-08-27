@@ -13,6 +13,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import BasicModal from "../../components/BasicModal/BasicModal";
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from "./ZakazivanjeTerminaPage.module.css";
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
+import { useNavigate } from "react-router-dom";
 export default function ZakazivanjeTerminaPage(){
     const idKorisnik=Services.uzimanjeSesijeId();
     const rola=Services.uzimanjeSesijeRola();
@@ -21,6 +24,7 @@ export default function ZakazivanjeTerminaPage(){
     const [termini, setTermini]=useState(null);
     const [error, setError]=useState(null);
     const[terminiIds,setTerminiIds]=useState(null);
+    const navigate=useNavigate();
     useEffect(()=>{
         const fetchData=async()=>{
             const uslugeResponse=await Services.sveUsluge();
@@ -66,6 +70,7 @@ if (selectedUsluga) {
         text3={<Link to="/terminiKorisnik">Termini</Link>}
         text4={<Link to="/profilKorisnik">Tvoj profil</Link>}
         text5="Odjavi se"/>
+        <ToastContainer/>
            {usluge && <form method="get" onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.searchBox}>
             
@@ -120,12 +125,24 @@ if (selectedUsluga) {
         <div className={styles.termini}>
              {termin.appointments.split(',').map((vreme, appIndex)=> (
               <BasicModal label={<p key={appIndex}>{vreme}</p>} text={
-                <p className={styles.modalText}>Da li ste sigurni da želite da zakažete termin u {vreme}?</p>} onConfirm={async()=>{
+                <p className={styles.modalText}>Da li si siguran da želiš da zakažeš termin u {vreme}?</p>} onConfirm={async()=>{
                   const response=await Services.zakaziTermin({'idKorisnika': idKorisnik,
                 'idTermina':terminiIds[index][appIndex]});
-                console.log(terminiIds[index][appIndex]);
-                console.log(index);
-                console.log(appIndex);
+                  if(response==='Uspešno ste zakazali termin.'){
+                  toast.success("Termin je uspešno zakazan!", {
+          position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1500,
+        });
+        setTimeout(() => {
+             navigate("/terminiKorisnik");
+      },2000);}
+        
+        else{
+          toast.error("Došlo je do greške. Pokušaj ponovo!", {
+          position: toast.POSITION.TOP_RIGHT,
+            autoClose: 1500,
+        });
+        }
   
 
              }}/>

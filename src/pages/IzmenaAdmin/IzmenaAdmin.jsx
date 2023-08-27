@@ -14,26 +14,20 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 export default function IzmenaAdmin(props){
     const navigate=useNavigate();
-    const {idAdmin, idKorisnik,idZaposleni}=useParams();
-    const [id,setId]=useState(null);
     const [profil,setProfil]=useState({});
-    const [rola,setRola]=useState('');
     const { register, handleSubmit, formState: { errors }, reset} = useForm();
-
-    console.log(idKorisnik);
-    console.log(idZaposleni);
-  useEffect(() => {
-  if (idKorisnik) {
-    setId(idKorisnik);
-    setRola('Korisnik');
-  } else if (idZaposleni) {
-    setId(idZaposleni);
-    setRola('Zaposleni');
-  } else {
-    setId(null);
-  }
-}, [idKorisnik, idZaposleni]);
-console.log(id);
+    const {idKorisnik,idZaposleni}=useParams();
+    const [id,setId]=useState(null);
+    const rola=Services.uzimanjeSesijeRola();
+    useEffect(()=>{
+        if(idKorisnik){
+            setId(idKorisnik);
+        }else if(idZaposleni){
+            setId(idZaposleni);
+        }else
+            setId(null);
+        }
+    ,[idKorisnik,idZaposleni]);
     useEffect(()=>{
         const fetchData=async()=>{
             const response=await Services.mojProfil(id);
@@ -64,22 +58,22 @@ console.log(id);
 'password':data.password,
 'password_confirmation':data.password_confirmation
     })
-    if(response && response.poruka==='Uspešno ste izmenili podatke'){
+    if(response==='Uspešno ste izmenili podatke'){
       toast.success("Podaci su uspešno izmenjeni!", {
           position: toast.POSITION.TOP_RIGHT,
             autoClose: 1500,
         });
         setTimeout(() => {
         if(idKorisnik){
-        navigate(`/korisniciAdmin/${idAdmin}`);}
+        navigate(`/korisniciAdmin`);}
         else if(idZaposleni){
-            navigate(`/zaposleniAdmin/${idAdmin}`)
+            navigate(`/zaposleniAdmin`)
         }
      }, 2000);   
        ;
 
     }else {
-        toast.error("Izmena podataka nije uspela! Pokušajte ponovo!", {
+        toast.error(response, {
           position: toast.POSITION.TOP_RIGHT,
           autoClose:1500,
         });
@@ -90,11 +84,12 @@ console.log(id);
     }
     return(
         <>
-        <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to={`/zaposleniAdmin/${idAdmin}`}>Zaposleni</Link>}
-        text3={<Link to={`/korisniciAdmin/${idAdmin}`}>Korisnici</Link>}
-        text4={<Link to={`/profilAdmin/${idAdmin}`}>Tvoj profil</Link>}
+       <Navbar
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/zaposleniAdmin">Zaposleni</Link>}
+        text3={<Link to="/korisniciAdmin">Korisnici</Link>}
+        text4={<Link to="/profilAdmin">Tvoj profil</Link>}
         text5="Odjavi se"/>
         <ToastContainer/>
         <div className={styles.box}>

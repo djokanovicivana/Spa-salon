@@ -31,7 +31,7 @@ export default function SviZaposleniPage(){
         text5="Odjavi se"/>
         <div  className={styles.heading}>
         <h1>Svi zaposleni</h1>
-        <Link to={`/dodavanjeZaposlenog/${idAdmin}`}><ContainedButton module={styles.button} text={<AddIcon/>}/></Link>
+        <Link to={`/dodavanjeZaposlenog`}><ContainedButton module={styles.button} text={<AddIcon/>}/></Link>
         
         </div>
       {zaposleni && <div>

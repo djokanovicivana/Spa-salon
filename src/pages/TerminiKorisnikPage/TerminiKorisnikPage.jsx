@@ -38,7 +38,7 @@ export default function TerminiKorisnikPage(){
                 <p className={styles.item}>{termin.FirstName} {termin.LastName}</p>
                 <p className={styles.item}>{termin.ServiceName}</p>
                 <p className={styles.item}>{format(new Date(termin.AppointmentDateTime), 'dd.MM.yyyy. HH:mm')}</p>
-                <BasicModal text={<p className={styles.modalText}>Da li ste sigurni da želite da otkažete termin?</p>}label={<ContainedButton module={styles.cancel} text="X"/>} onConfirm={async()=>{
+                <BasicModal text={<p className={styles.modalText}>Da li si siguran da želiš da otkažeš termin?</p>}label={<ContainedButton module={styles.cancel} text="X"/>} onConfirm={async()=>{
                     const response=await Services.otkaziTermin({
                         'idKorisnika':idKorisnik,
                         'idTermina':termin.AppointmentID

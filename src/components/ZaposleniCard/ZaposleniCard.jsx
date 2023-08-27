@@ -22,8 +22,8 @@ export default function ZaposleniCard(props){
         <p>Email: <span>{props.email}</span></p>
         <p>Broj telefona: <span>{props.brojTelefona}</span></p>
         </div>
-        <div className={styles.row4}>
-        <Link to={`/izmenaZaposlenog/${props.idZaposleni}/${props.idAdmin}`}><ContainedButton module={styles.button} text={<EditIcon/>}/></Link> 
+        <div className={styles.row}>
+        <Link to={`/izmenaZaposlenog/${props.idZaposleni}`}><ContainedButton module={styles.button} text={<EditIcon/>}/></Link> 
         <BasicModal label={<ContainedButton module={styles.button} text={<DeleteIcon/>}/>} text={<p className={styles.modalText}>Da li ste sigurni da želite da obrišete zaposlenog?</p>} 
         onConfirm={async()=>{
         const response=await Services.obrisiKorisnika({'idKorisnika':props.idZaposleni,

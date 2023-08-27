@@ -23,8 +23,8 @@ export default function KorisniciCard(props){
         <p>Broj telefona: <span>{props.brojTelefona}</span></p>
         </div>
         <div className={styles.row4}>
-        <Link to={`/izmenaKorisnika/${props.idKorisnika}/${props.idAdmin}`}><ContainedButton module={styles.button} text={<EditIcon/>}/></Link> 
-        <BasicModal label={<ContainedButton module={styles.button} text={<DeleteIcon/>}/>} text={<p className={styles.modalText}>Da li ste sigurni da želite da obrišete korisnika?</p>} 
+        <Link to={`/izmenaKorisnika/${props.idKorisnika}`}><ContainedButton module={styles.button} text={<EditIcon/>}/></Link> 
+        <BasicModal label={<ContainedButton module={styles.button} text={<DeleteIcon/>}/>} text={<p className={styles.modalText}>Da li si siguran da želiš da obrišeš korisnika?</p>} 
         onConfirm={async()=>{
         {console.log(props.idKorisnika)};
         const response=await Services.obrisiKorisnika({'idKorisnika':props.idKorisnika,

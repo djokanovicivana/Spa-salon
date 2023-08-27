@@ -68,26 +68,26 @@ function App() {
         Route path = "/profilAdmin"
         element = { < AdminProfil / > }
         /> <
-        Route path = "/azuriranjePodatakaAdmin/:idAdmin"
+        Route path = "/azuriranjePodatakaAdmin"
         element = { < IzmenaForm uloga = "Administrator" / > }
         /> <
-        Route path = "/azuriranjePodatakaZaposleni/:idZaposleni"
+        Route path = "/azuriranjePodatakaZaposleni"
         element = { < IzmenaForm uloga = "Zaposleni" / > }
         /> <
-        Route path = "/azuriranjePodatakaKorisnik/:idKorisnik"
+        Route path = "/azuriranjePodatakaKorisnik"
         element = { < IzmenaForm uloga = "Korisnik" / > }
         /> <
-        Route path = "/izmenaKorisnika/:idKorisnik/:idAdmin"
+        Route path = "/izmenaKorisnika/:idKorisnik"
         element = { < IzmenaAdmin / > }
         /> <
-        Route path = "/izmenaZaposlenog/:idZaposleni/:idAdmin"
+        Route path = "/izmenaZaposlenog/:idZaposleni"
         element = { < IzmenaAdmin / > }
         /> <
-        Route path = "/dodavanjeKorisnika/:idAdmin"
+        Route path = "/dodavanjeKorisnika"
         element = { < DodavanjeForm uloga = "Korisnik"
             heading = "Dodaj korisnika:" / > }
         /> <
-        Route path = "/dodavanjeZaposlenog/:idAdmin"
+        Route path = "/dodavanjeZaposlenog"
         element = { < DodavanjeForm uloga = "Zaposleni"
             heading = "Dodaj zaposlenog:" / > }
         /> <

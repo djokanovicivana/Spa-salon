@@ -180,10 +180,10 @@ const theme1 = createTheme({
            slobodniTermini[tabValue].termini.map((termin,index)=>(
            <div key={index} className={styles.slobodniBox}>
             <p>{format(new Date(termin.AppointmentDateTime), 'dd.MM.yyyy. HH:mm')}</p>
-              <BasicModal label={<ContainedButton module={styles.button} text={<DeleteIcon/>}/>} text={<p className={styles.modalText}>Da li ste sigurni da želite da obrišete termin?</p>} 
+              <BasicModal label={<ContainedButton module={styles.button} text={<DeleteIcon/>}/>} text={<p className={styles.modalText}>Da li si siguran da želiš da obrišeš termin?</p>} 
         onConfirm={async()=>{
         const response=await Services.obrisiTermin(termin.AppointmentID);
-        if(response==='Uspesno obrisan korisnik'){
+        if(response==='Uspesno obrisan termin.'){
          toast.success("Termin je uspešno obrisan!", {
           position: toast.POSITION.TOP_RIGHT,
             autoClose: 1500,

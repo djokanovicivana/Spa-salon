@@ -45,9 +45,10 @@ if(response==='Registracija uspešna.'){
         text4={<Link to="/registracija">Registruj se</Link>}
         />
         <ToastContainer/>
-                    <form onSubmit={handleSubmit(onSubmit)} method="post" className={styles.form}>
-                    <div className={styles.row1}>
+                    <form onSubmit={handleSubmit(onSubmit)} method="post" className={styles.box}>
                         <h1 className={styles.heading}>Registruj se</h1>
+                        <div className={styles.form}>
+                    <div className={styles.row1}>
                        <div className={styles.item}>
                             <TextField
                                 id="ime"
@@ -114,6 +115,7 @@ if(response==='Registracija uspešna.'){
                             {errors.password_confirmation && <p className={styles.error}>Polje je obavezno.</p>} 
                         </div>
                         <ContainedButton text="POTVRDI" type="submit" module={styles.button}/>
+                    </div>
                     </div>
                     </form>     
         </>

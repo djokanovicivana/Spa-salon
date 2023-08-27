@@ -24,7 +24,7 @@ const registracija=async({ime,prezime,brojTelefona,email,korisnickoIme,password,
 const dodajKorisnika=async({ime,prezime,brojTelefona,email,korisnickoIme,password,rola,usluga})=>{
     try{
         const response=await axios.post(`${apiEndpoints.endpointDodajKorisnika}.php?rola=${rola}`,{ime,prezime,brojTelefona,email,korisnickoIme,password,usluga});
-        return response.data;
+        return response;
     }
     catch (error) {
         console.log("Greška pri dodavanju:", error);
@@ -66,10 +66,11 @@ const azurirajPodatke=async({idKorisnika,ime,prezime,email,brojTelefona,korisnic
         korisnickoIme:korisnickoIme,
         password:password,
         password_confirmation:password_confirmation});
-return response.data;
+return response.data.poruka;
     }
     catch(error){
         console.log("error:",error);
+        return error.response.data.poruka;
     }
 }
 const izmeniKorisnika=async({idKorisnika,ime,prezime,email,brojTelefona,korisnickoIme,lozinka})=>{
@@ -82,10 +83,11 @@ const izmeniKorisnika=async({idKorisnika,ime,prezime,email,brojTelefona,korisnic
             korisnickoIme:korisnickoIme,
             lozinka:lozinka
         });
-        return response;
+        return response.data.poruka;
     }
     catch(error){
         console.log('error:',error);
+        return error.response.data.poruka;
     }
 }
 const zakazaniTermini=async({idZaposlenog,idUsluge})=>{

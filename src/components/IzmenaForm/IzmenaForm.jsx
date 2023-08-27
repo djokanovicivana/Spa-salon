@@ -5,7 +5,6 @@ import ContainedButton from "../../components/ContainedButton/ContainedButton";
 import { useForm } from 'react-hook-form';
 import Navbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Services } from "../../services/Services";
 import { useState } from "react";
@@ -14,33 +13,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 export default function IzmenaForm(props){
     const navigate=useNavigate();
-    const {idAdmin,idKorisnik,idZaposleni}=useParams();
-    const [id,setId]=useState(null);
+    const id=Services.uzimanjeSesijeId();
+    const rola=Services.uzimanjeSesijeRola();
     const [profil,setProfil]=useState({});
-    const [rola,setRola]=useState('');
-    const { register, handleSubmit, formState: { errors }, reset} = useForm();
-    console.log(idAdmin);
-    console.log(idKorisnik);
-    console.log(idZaposleni);
-  useEffect(() => {
-  if (idAdmin) {
-    setId(idAdmin);
-    setRola('Admin');
-  } else if (idKorisnik) {
-    setId(idKorisnik);
-    setRola('Korisnik');
-  } else if (idZaposleni) {
-    setId(idZaposleni);
-    setRola('Zaposleni');
-  } else {
-    setId(null);
-  }
-}, [idAdmin, idKorisnik, idZaposleni]);
-console.log(id);
+    const { register, handleSubmit, reset} = useForm();
+
     useEffect(()=>{
         const fetchData=async()=>{
             const response=await Services.mojProfil(id);
-            console.log(response);
             setProfil(response);
         };
         fetchData();
@@ -67,18 +47,26 @@ console.log(id);
 'password':data.password,
 'password_confirmation':data.password_confirmation
     })
-    if(response && response.poruka==='Uspešno ste izmenili podatke'){
+    console.log(response);
+    if(response==='Uspešno ste izmenili podatke'){
       toast.success("Podaci su uspešno izmenjeni!", {
           position: toast.POSITION.TOP_RIGHT,
             autoClose: 1500,
         });
         setTimeout(() => {
-        navigate(`/profil${rola}/${id}`);
+        if(rola==1){
+        navigate("/profilAdmin");}
+        else if(rola==2){
+            navigate("/profilZaposleni");
+        }else{
+            navigate("/profilKorisnik");
+        }
      }, 2000);   
 
 
+
     }else {
-        toast.error("Izmena podataka nije uspela! Pokušajte ponovo!", {
+        toast.error(response, {
           position: toast.POSITION.TOP_RIGHT,
           autoClose:1500,
         });
@@ -90,19 +78,22 @@ console.log(id);
     return(
         <>
         {props.uloga==='Administrator' ? (<Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to={`/zaposleniAdmin/${idAdmin}`}>Zaposleni</Link>}
-        text3={<Link to={`/korisniciAdmin/${idAdmin}`}>Korisnici</Link>}
-        text4={<Link to={`/profilAdmin/${idAdmin}`}>Tvoj profil</Link>}
-        text5="Odjavi se"/>) : props.uloga==='Zaposleni'? (<Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text3={<Link to={`/terminiZaposleni/${idZaposleni}`}>Termini</Link>}
-        text4={<Link to={`/profilZaposleni/${idZaposleni}`}>Tvoj profil</Link>}
-        text5="Odjavi se"/>) :    <Navbar
-        logo={<Link to="/">KOZMETIČKI SALON</Link>}
-        text2={<Link to={`/zakazivanjeTermina/${idKorisnik}`}>Zakaži termin</Link>}
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/zaposleniAdmin">Zaposleni</Link>}
+        text3={<Link to="/korisniciAdmin">Korisnici</Link>}
+        text4={<Link to="/profilAdmin">Tvoj profil</Link>}
+        text5="Odjavi se"/>) : props.uloga==='Zaposleni'? ( <Navbar
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text3={<Link to="/terminiZaposleni">Termini</Link>}
+        text4={<Link to="/profilZaposleni">Tvoj profil</Link>}
+        text5="Odjavi se"/>) :  <Navbar
+        pocetna={rola}
+        logo="KOZMETIČKI SALON"
+        text2={<Link to="/zakazivanjeTermina">Zakaži termin</Link>}
         text3={<Link to="/terminiKorisnik">Termini</Link>}
-        text4={<Link to={`/profilKorisnik/${idKorisnik}`}>Tvoj profil</Link>}
+        text4={<Link to="/profilKorisnik">Tvoj profil</Link>}
         text5="Odjavi se"/>}
         <ToastContainer/>
         <div className={styles.box}>
