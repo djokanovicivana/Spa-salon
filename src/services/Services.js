@@ -1,4 +1,5 @@
 
+import { AutoFixOffTwoTone } from "@mui/icons-material";
 import { apiEndpoints } from "../utils/apiUrls";
 import axios from "axios";
 const prijava=async({korisnickoIme, password})=>{
@@ -87,13 +88,14 @@ const izmeniKorisnika=async({idKorisnika,ime,prezime,email,brojTelefona,korisnic
         console.log('error:',error);
     }
 }
-const zakazaniTermini=async(idZaposlenog)=>{
+const zakazaniTermini=async({idZaposlenog,idUsluge})=>{
     try{
-        const response=await axios.get(`${apiEndpoints.endpointZakazaniTermini}?idZaposlenog=${idZaposlenog}.php`);
-        return response.data.termini;
+        const response=await axios.get(`${apiEndpoints.endpointZakazaniTermini}.php?idZaposlenog=${idZaposlenog}&idUsluge=${idUsluge}`);
+        return response.data;
     }
     catch(error){
         console.log('error:',error);
+        return error.response.data.poruka;
     }
 }
 const sveUsluge=async()=>{
@@ -107,7 +109,7 @@ const sveUsluge=async()=>{
 }
 const mojeUsluge=async(idZaposlenog)=>{
 try{
-    const response=await axios.get(`${apiEndpoints.endpointMojeUsluge}?idZaposlenog=${idZaposlenog}.php`);
+    const response=await axios.get(`${apiEndpoints.endpointMojeUsluge}.php?idZaposlenog=${idZaposlenog}`);
     return response.data.usluge;
 }
 catch(error){
@@ -171,12 +173,22 @@ const cuvanjeSesije = ({ idKorisnika, idRole }) => {
 const brisanjeSesije=()=>{
     sessionStorage.clear();
 }
-const uzimanjeSesije = () => {
+const uzimanjeSesijeId = () => {
     const storedData = sessionStorage.getItem('userData');
 
     if (storedData) {
         const userData = JSON.parse(storedData);
         return userData.idKorisnika;
+    }
+
+    return null; 
+}
+const uzimanjeSesijeRola = () => {
+    const storedData = sessionStorage.getItem('userData');
+
+    if (storedData) {
+        const userData = JSON.parse(storedData);
+        return userData.rola;
     }
 
     return null; 
@@ -191,6 +203,39 @@ const obrisiKorisnika=async({idKorisnika, rola})=>{
         return error.response.data.poruka;
     }
 
+}
+const zaposleniSlobodniTermini=async({idZaposlenog,idUsluge})=>{
+    try{
+        const response=await axios.get(`${apiEndpoints.endpointZaposleniSlobodniTermini}.php?idZaposlenog=${idZaposlenog}&idUsluge=${idUsluge}`);
+        return response.data;
+    }
+    catch(error){
+        console.log('error:',error);
+        return error.response.data.poruka;
+    }
+}
+const obrisiTermin=async(idTermina)=>{
+    try{
+        const response=await axios.get(`${apiEndpoints.endpointObrisiTermin}.php?idTermina=${idTermina}`);
+        return response.data.poruka;
+    }
+    catch(error){
+        console.log('error:',error);
+        return error.response.data.poruka;
+    }
+}
+const dodajTermin=async({idZaposlenog, terminDatum, terminSati,idUsluge})=>{
+    try{
+       const response=await axios.post(`${apiEndpoints.endpointDodajTermin}.php?idZaposlenog=${idZaposlenog}`,{
+        'terminDatum':terminDatum,
+        'terminSati':terminSati,
+        'idUsluge':idUsluge
+       });
+       return response.data.poruka;
+    }catch(error){
+        console.log('error:',error);
+        return error.response.data.poruka;
+    }
 }
 export const Services={
     prijava,
@@ -208,10 +253,14 @@ export const Services={
     korisniciSlobodniTermini,
     cuvanjeSesije,
     brisanjeSesije,
-    uzimanjeSesije,
+    uzimanjeSesijeId,
+    uzimanjeSesijeRola,
     zakaziTermin,
     korisniciZakazaniTermini,
     otkaziTermin,
-    obrisiKorisnika
+    obrisiKorisnika,
+    zaposleniSlobodniTermini,
+    obrisiTermin,
+    dodajTermin
 
 }

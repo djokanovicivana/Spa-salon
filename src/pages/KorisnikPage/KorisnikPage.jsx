@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import { Services } from "../../services/Services";
 export default function ZaposleniPage(){
-    const idKorisnik=Services.uzimanjeSesije();
+    const idKorisnik=Services.uzimanjeSesijeId();
     return(
         <>
        <Navbar

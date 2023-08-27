@@ -1,9 +1,9 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { Services } from "../../services/Services";
 export default function ZaposleniPage(){
-    const {idZaposleni}=useParams();
+    const idZaposleni=Services.uzimanjeSesijeId();
     return(
         <>
        <Navbar

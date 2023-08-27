@@ -30,9 +30,8 @@ const TableTabs = () => {
     <div>
     <Box className={styles.tabBox}>
       <Tabs value={selectedTab} onChange={handleChangeTab} >
-        <Tab label="Nokti"  className={styles.tabs}/>
-        <Tab label="Šminka" className={styles.tabs}/>
-        <Tab label="Frizura" className={styles.tabs}/>
+        <Tab label="Zakazani termini"  className={styles.tabs}/>
+        <Tab label="Slobodni termini" className={styles.tabs}/>
       </Tabs>
       </Box>
       

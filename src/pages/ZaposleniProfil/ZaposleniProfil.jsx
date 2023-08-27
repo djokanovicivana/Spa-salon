@@ -2,13 +2,12 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import { Link } from "react-router-dom";
 import Profil from "../../components/Profil/Profil";
-import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Services } from "../../services/Services";
 export default function ZaposleniProfil(){
     const [zaposleni,setZaposleni]=useState([]);
-    const {idZaposleni}=useParams();
+    const idZaposleni=Services.uzimanjeSesijeId();
     useEffect(()=>{
         const fetchData=async()=>{
             const response=await Services.mojProfil(idZaposleni);
