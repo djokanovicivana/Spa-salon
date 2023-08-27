@@ -224,11 +224,10 @@ const obrisiTermin=async(idTermina)=>{
         return error.response.data.poruka;
     }
 }
-const dodajTermin=async({idZaposlenog, terminDatum, terminSati,idUsluge})=>{
+const dodajTermin=async({idZaposlenog, termin,idUsluge})=>{
     try{
        const response=await axios.post(`${apiEndpoints.endpointDodajTermin}.php?idZaposlenog=${idZaposlenog}`,{
-        'terminDatum':terminDatum,
-        'terminSati':terminSati,
+        'termin':termin,
         'idUsluge':idUsluge
        });
        return response.data.poruka;

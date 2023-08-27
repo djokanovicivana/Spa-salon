@@ -120,7 +120,7 @@ const theme1 = createTheme({
         }
       };
       fetchData();
-    },[idZaposleni]);
+    },[slobodniTermini,zakazaniTermini]);
    
     console.log(zakazaniTermini);
     console.log(slobodniTermini);

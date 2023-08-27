@@ -13,7 +13,7 @@ a:-webkit-any-link:hover {
     color: #ffe5ec;
     background: linear-gradient(to bottom, #ff8fab, #ffb3c6);
     display: flex;
-    min-width: 100vw;
+    max-width: 100vw;
 }
 
 .logo {
