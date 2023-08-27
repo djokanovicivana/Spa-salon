@@ -20,11 +20,9 @@ function dodajVreme($pocetak, $trajanje)
 
 function formatiranjeDatuma($datum,$format)
 {
-    $datum = str_replace("GMT 0200 (Central European Summer Time)", "", $datum);
-    $datum = new DateTime($datum);
-    $formatiranDatum = $datum->format($format);
+    $datumObj = new DateTime($datum);
+    $formatiranDatum = $datumObj->format($format);
     return $formatiranDatum;
-    
 }
 
 function proveriTermin($conn, $idZaposlenog, $terminDatum,$terminSati)
@@ -32,10 +30,12 @@ function proveriTermin($conn, $idZaposlenog, $terminDatum,$terminSati)
     $sql = "SELECT salonservice.ServiceDuration as trajanje, TIME(AppointmentDateTime) as pocetak FROM appointment INNER JOIN salonservice ON appointment.ServiceID = salonservice.ServiceID WHERE EmployeeID = '$idZaposlenog' AND CAST(AppointmentDateTime AS DATE) = '$terminDatum'";
     $result = $conn->query($sql);
     $termini =  $result->fetch_all(MYSQLI_ASSOC);
+    
     foreach($termini as $termin)
     {
         $krajTermina = dodajVreme($termin['pocetak'], $termin['trajanje']);
-        if($krajTermina>$terminSati)
+        
+        if($terminSati<$krajTermina && $terminSati>$termin['pocetak'])
         {
             return false;
         }
@@ -45,7 +45,7 @@ function proveriTermin($conn, $idZaposlenog, $terminDatum,$terminSati)
 
 $metoda = $_SERVER['REQUEST_METHOD'];
 
-//if ($metoda == 'GET'){
+
 if ($metoda == 'POST'){
     // idZaposlenog poslati sa fronta, uzeti iz sesije
 
@@ -55,13 +55,10 @@ if ($metoda == 'POST'){
     //tamo mu izbacuje sve njegove usluge - endpoint mojeUsluge pa bira neku od njih za koju zakazuje termin
     $idUsluge = $data['idUsluge'];
     $termin = $data['termin'];
-   //$idUsluge = $_GET['idUsluge'];
-   //$termin = $_GET['termin'];
     $available = 1;
 
     $terminDatum = formatiranjeDatuma($termin,"Y-m-d");
     $terminSati = formatiranjeDatuma($termin,"H:i:s"); 
-    
     
     if(!proveriTermin($conn,$idZaposlenog,$terminDatum,$terminSati))
     {
@@ -73,7 +70,7 @@ if ($metoda == 'POST'){
     $formatiranDatum = formatiranjeDatuma($termin,"Y-m-d H:i:s");
 
     $sql = "INSERT INTO appointment (AppointmentDateTime, ServiceID, EmployeeID, available) VALUES ('$formatiranDatum', '$idUsluge','$idZaposlenog','$available')";
-    //var_dump($sql);        
+           
     if ($conn->query($sql) === TRUE) {
         
         echo json_encode(['poruka' => 'Termin uspešno dodat.']);
