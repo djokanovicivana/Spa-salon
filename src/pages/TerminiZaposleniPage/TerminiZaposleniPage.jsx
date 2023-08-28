@@ -121,12 +121,8 @@ const theme1 = createTheme({
         }
       };
       fetchData();
-    },[idZaposleni]);
-   
-    console.log(zakazaniTermini);
-    console.log(slobodniTermini);
-    console.log(usluge);
-    console.log(uslugeIds);
+    },[slobodniTermini,zakazaniTermini]);
+  
     return (
         <>
        <Navbar

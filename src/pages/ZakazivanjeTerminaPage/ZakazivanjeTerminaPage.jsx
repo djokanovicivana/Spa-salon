@@ -109,6 +109,7 @@ if (selectedUsluga) {
             <p className={styles.label}>Izaberi datum:</p>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
+              sx={{width:220}}
               disablePast  
               className={styles.picker}
                 value={field.value}
